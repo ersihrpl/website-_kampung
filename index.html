@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portofolio Saya</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f1f8f4;
+      color: #173b2b;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(20, 83, 45, 0.95);
+      padding: 15px 20px;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 8px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #b7f7c8;
+    }
+
+    /* HOME */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+      background: linear-gradient(135deg, #14532d, #3fa66b);
+      color: white;
+    }
+
+    .home-content {
+      max-width: 700px;
+    }
+
+    .profile-img {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .home-content h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .home-content p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .button {
+      display: inline-block;
+      background: white;
+      color: #14532d;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* SECTION */
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 35px;
+      color: #14532d;
+    }
+
+    /* ABOUT */
+    .about {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    /* SKILLS */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .skill {
+      background: white;
+      padding: 25px 15px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+      font-weight: bold;
+    }
+
+    /* PROJECT */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .project {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    }
+
+    .project h3 {
+      color: #187a43;
+      margin-bottom: 10px;
+    }
+
+    /* EDUCATION */
+    .education {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    }
+
+    /* CONTACT */
+    .contact {
+      text-align: center;
+      background: #14532d;
+      color: white;
+      border-radius: 20px;
+      padding: 35px 20px;
+    }
+
+    .contact a {
+      color: #c9f7d5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0b2e1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      .home-content h1 {
+        font-size: 30px;
+      }
+
+      .home-content p {
+        font-size: 16px;
+      }
+
+      nav {
+        padding: 12px 5px;
+      }
+
+      nav a {
+        font-size: 12px;
+        margin: 0 4px;
+      }
+
+      section {
+        padding: 70px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skill</a>
+    <a href="#projects">Project</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="home-content">
+
+      <!-- GANTI FOTO DI SINI -->
+      <img src="foto-saya.jpg" class="profile-img" alt="Foto Saya">
+
+      <!-- GANTI NAMA DI SINI -->
+      <h1>Nama Kamu</h1>
+
+      <p>
+        Fresh Graduate Rekayasa Perangkat Lunak (RPL)
+      </p>
+
+      <a href="#about" class="button">Lihat Profil</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="title">Tentang Saya</h2>
+
+    <div class="about">
+      <p>
+        Halo! Saya adalah lulusan baru jurusan Rekayasa Perangkat Lunak
+        (RPL) yang memiliki ketertarikan pada dunia teknologi, khususnya
+        pengembangan website dan aplikasi.
+      </p>
+
+      <br>
+
+      <p>
+        Selama sekolah saya telah mengerjakan berbagai proyek dan
+        melaksanakan Praktik Kerja Lapangan (PKL). Saya mampu bekerja
+        secara individu maupun dalam tim dan terus ingin mengembangkan
+        kemampuan saya di bidang teknologi.
+      </p>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="title">Keahlian</h2>
+
+    <div class="skills">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">PHP</div>
+      <div class="skill">Database</div>
+      <div class="skill">Web Development</div>
+    </div>
+  </section>
+
+  <!-- PROJECT -->
+  <section id="projects">
+    <h2 class="title">Project Saya</h2>
+
+    <div class="projects">
+
+      <div class="project">
+        <h3>Website Profil</h3>
+        <p>
+          Membuat website profil sederhana menggunakan HTML dan CSS.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Project Sekolah</h3>
+        <p>
+          Mengembangkan project website sebagai bagian dari tugas
+          pembelajaran Rekayasa Perangkat Lunak.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Project PKL</h3>
+        <p>
+          Mendapatkan pengalaman dalam mengerjakan tugas dan project
+          selama Praktik Kerja Lapangan.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <h2 class="title">Pendidikan</h2>
+
+    <div class="education">
+      <h3>SMK - Rekayasa Perangkat Lunak</h3>
+      <p>
+        Jurusan Rekayasa Perangkat Lunak (RPL)
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact">
+      <h2>Hubungi Saya</h2>
+
+      <br>
+
+      <p>Email: emailkamu@gmail.com</p>
+      <p>Instagram: @usernamekamu</p>
+
+      <br>
+
+      <p>
+        Terima kasih sudah mengunjungi website saya!
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Nama Kamu | Portfolio
+  </footer>
+
+</body>
+  </html>
