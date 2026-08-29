@@ -6,702 +6,163 @@
 
     <title>Kampung Seburing</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
+<nav class="navbar">
 
-<header id="navbar">
+    <div class="logo">
+        Kampung <span>Seburing</span>
+    </div>
 
-    <a href="#beranda" class="logo">
-        🌿 <span>Seburing</span>
-    </a>
+    <ul class="nav-menu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="potensi.html">Potensi</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+    </ul>
 
-    <button id="menuBtn">☰</button>
-
-    <nav id="nav">
-        <a href="#beranda">Beranda</a>
-        <a href="#sejarah">Sejarah</a>
-        <a href="#penduduk">Penduduk</a>
-        <a href="#persawahan">Persawahan</a>
-        <a href="#kegiatan">Kegiatan</a>
-        <a href="#lingkungan">Lingkungan</a>
-        <a href="#lokasi">Lokasi</a>
-        <a href="#galeri">Galeri</a>
-    </nav>
-
-</header>
+</nav>
 
 
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="beranda">
-
-    <div class="hero-bg"></div>
+<!-- HERO -->
+<section class="hero">
 
     <div class="hero-content">
 
-        <p class="tag">
-            KAMPUNG KITA • SEBURING
-        </p>
-
         <h1>
             Selamat Datang di
-            <br>
             <span>Kampung Seburing</span>
         </h1>
 
         <p>
-            Mengenal sejarah, masyarakat, pertanian,
-            kegiatan, lingkungan, dan kehidupan warga
-            Kampung Seburing.
+            Mengenal lebih dekat kehidupan, masyarakat,
+            potensi, dan keindahan Kampung Seburing.
         </p>
 
-        <div class="hero-buttons">
-
-            <a href="#sejarah" class="btn">
-                Jelajahi Kampung
-            </a>
-
-            <a href="#galeri" class="btn outline">
-                Lihat Galeri
-            </a>
-
-        </div>
-
-    </div>
-
-    <div class="scroll">
-        ↓ Scroll
-    </div>
-
-</section>
-
-
-<!-- ================= DATA SINGKAT ================= -->
-
-<section class="quick">
-
-    <div>
-        <b>4.542</b>
-        <small>Jumlah Penduduk</small>
-    </div>
-
-    <div>
-        <b>1.266 Ha</b>
-        <small>Luas Wilayah</small>
-    </div>
-
-    <div>
-        <b>3</b>
-        <small>Dusun</small>
-    </div>
-
-    <div>
-        <b>21</b>
-        <small>RT</small>
-    </div>
-
-</section>
-
-
-<!-- ================= SEJARAH ================= -->
-
-<section class="section" id="sejarah">
-
-    <div class="heading">
-
-        <p class="tag dark">
-            SEJARAH
-        </p>
-
-        <h2>
-            Cerita di balik nama
-            <span>Seburing</span>
-        </h2>
-
-    </div>
-
-
-    <div class="two-col">
-
-        <img
-            class="feature-img"
-            src="assets/01-kantor-desa.jpg"
-            alt="Kantor dan lingkungan Desa Seburing"
-        >
-
-        <div>
-
-            <p>
-                Secara historis, Desa Seburing diperkirakan
-                berdiri dan diresmikan sekitar tahun
-                <b>1900</b>.
-            </p>
-
-            <p>
-                Berdasarkan keterangan masyarakat,
-                nama Seburing berkaitan dengan seorang
-                penduduk asli bernama <b>Pak Buring</b>
-                yang dahulu merintis desa.
-            </p>
-
-            <p>
-                Seiring berjalannya waktu, kehidupan
-                masyarakat dan pemerintahan desa terus
-                berkembang hingga sekarang.
-            </p>
-
-            <div class="quote">
-
-                “Sejarah kampung adalah cerita yang
-                menghubungkan generasi terdahulu
-                dengan generasi hari ini.”
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PENDUDUK ================= -->
-
-<section class="section cream" id="penduduk">
-
-    <div class="heading">
-
-        <p class="tag dark">
-            DATA KAMPUNG
-        </p>
-
-        <h2>
-            Jumlah
-            <span>Penduduk</span>
-        </h2>
-
-    </div>
-
-
-    <div class="population">
-
-        <div class="pop-card">
-
-            <span>👨</span>
-
-            <b>2.346</b>
-
-            <small>
-                Laki-laki
-            </small>
-
-        </div>
-
-
-        <div class="pop-card">
-
-            <span>👩</span>
-
-            <b>2.196</b>
-
-            <small>
-                Perempuan
-            </small>
-
-        </div>
-
-
-        <div class="pop-card total">
-
-            <span>👨‍👩‍👧‍👦</span>
-
-            <b>4.542</b>
-
-            <small>
-                Total Penduduk
-            </small>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PERSAWAHAN ================= -->
-
-<section class="section" id="persawahan">
-
-    <div class="heading">
-
-        <p class="tag dark">
-            POTENSI ALAM
-        </p>
-
-        <h2>
-            Persawahan
-            <span>Seburing</span>
-        </h2>
-
-    </div>
-
-
-    <div class="farm-grid">
-
-        <div>
-
-            <p>
-                Persawahan menjadi bagian penting
-                dari kehidupan masyarakat Kampung
-                Seburing.
-            </p>
-
-            <p>
-                Hamparan tanaman padi menunjukkan
-                potensi pertanian sekaligus aktivitas
-                masyarakat di wilayah pedesaan.
-            </p>
-
-            <p>
-                Pertanian bukan hanya tentang hasil
-                panen, tetapi juga tentang kerja sama,
-                pengetahuan warga, dan keberlanjutan
-                sumber penghidupan kampung.
-            </p>
-
-
-            <div class="mini-list">
-
-                <span>🌾 Pertanian</span>
-                <span>💧 Pengairan</span>
-                <span>👩‍🌾 Kelompok Tani</span>
-
-            </div>
-
-        </div>
-
-
-        <img
-            src="assets/03-panen-padi.jpg"
-            alt="Persawahan Kampung Seburing"
-        >
-
-    </div>
-
-</section>
-
-
-<!-- ================= KEGIATAN ================= -->
-
-<section class="section cream" id="kegiatan">
-
-    <div class="heading">
-
-        <p class="tag dark">
-            MASYARAKAT
-        </p>
-
-        <h2>
-            Kegiatan
-            <span>Masyarakat</span>
-        </h2>
-
-    </div>
-
-
-    <div class="activity-grid">
-
-
-        <!-- RAPAT -->
-
-        <article>
-
-            <img
-                src="assets/02-rapat-masyarakat.jpg"
-                alt="Rapat koordinasi masyarakat"
-            >
-
-            <div>🤝</div>
-
-            <h3>
-                Rapat & Koordinasi
-            </h3>
-
-            <p>
-                Warga dan pengurus berkumpul
-                untuk membahas kegiatan,
-                kebutuhan, serta perkembangan
-                kampung.
-            </p>
-
-        </article>
-
-
-        <!-- SAWAH -->
-
-        <article>
-
-            <img
-                src="assets/04-kegiatan-sawah.jpg"
-                alt="Kegiatan masyarakat di sawah"
-            >
-
-            <div>🌾</div>
-
-            <h3>
-                Kegiatan Pertanian
-            </h3>
-
-            <p>
-                Aktivitas di lahan persawahan
-                memperlihatkan semangat
-                kebersamaan masyarakat.
-            </p>
-
-        </article>
-
-
-        <!-- KANTOR -->
-
-        <article>
-
-            <img
-                src="assets/01-kantor-desa.jpg"
-                alt="Lingkungan kantor desa"
-            >
-
-            <div>🏡</div>
-
-            <h3>
-                Kehidupan Kampung
-            </h3>
-
-            <p>
-                Lingkungan desa menjadi ruang
-                bertemu, bekerja, dan menjalankan
-                kegiatan sehari-hari.
-            </p>
-
-        </article>
-
-
-        <!-- JALAN -->
-
-        <article>
-
-            <img
-                src="assets/07-jalan-desa.jpg"
-                alt="Jalan desa"
-            >
-
-            <div>🛣️</div>
-
-            <h3>
-                Akses & Lingkungan
-            </h3>
-
-            <p>
-                Jalan kampung menjadi penghubung
-                aktivitas warga dan bagian dari
-                wajah wilayah Seburing.
-            </p>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<!-- ================= LINGKUNGAN ================= -->
-
-<section class="section" id="lingkungan">
-
-    <div class="heading">
-
-        <p class="tag dark">
-            LINGKUNGAN
-        </p>
-
-        <h2>
-            Wajah alami
-            <span>Seburing</span>
-        </h2>
-
-    </div>
-
-
-    <div class="environment-grid">
-
-        <img
-            src="assets/06-lingkungan-kebun.jpg"
-            alt="Kebun dan pohon kelapa"
-        >
-
-
-        <div>
-
-            <h3>
-                Lingkungan yang hijau
-                dan dekat dengan alam
-            </h3>
-
-            <p>
-                Pepohonan, kebun, dan tanaman
-                kelapa menjadi bagian dari
-                pemandangan sehari-hari di
-                Kampung Seburing.
-            </p>
-
-            <p>
-                Lingkungan ini menunjukkan
-                karakter pedesaan yang masih
-                kuat dan dekat dengan alam.
-            </p>
-
-
-            <img
-                src="assets/08-banjir.jpg"
-                alt="Kondisi banjir"
-                class="small-photo"
-            >
-
-            <p class="caption">
-                Dokumentasi kondisi lingkungan
-                saat terjadi genangan atau banjir.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= LOKASI ================= -->
-
-<section class="section location" id="lokasi">
-
-    <div class="location-box">
-
-        <div>
-
-            <p class="tag">
-                LOKASI KAMPUNG
-            </p>
-
-            <h2>
-                Di mana
-                <span>Seburing?</span>
-            </h2>
-
-            <p>
-                Desa Seburing berada di Kecamatan
-                Semparuk, Kabupaten Sambas,
-                Provinsi Kalimantan Barat,
-                Indonesia.
-            </p>
-
-            <a
-                class="btn"
-                target="_blank"
-                href="https://www.google.com/maps/search/?api=1&query=Desa+Seburing+Semparuk+Sambas"
-            >
-                📍 Buka Google Maps
-            </a>
-
-        </div>
-
-
-        <img
-            class="location-photo"
-            src="assets/05-jalan-kampung.jpg"
-            alt="Jalan Kampung Seburing"
-        >
-
-    </div>
-
-</section>
-
-
-<!-- ================= GALERI ================= -->
-
-<section class="section cream" id="galeri">
-
-    <div class="heading">
-
-        <p class="tag dark">
-            GALERI
-        </p>
-
-        <h2>
-            Wajah
-            <span>Kampung Kita</span>
-        </h2>
-
-    </div>
-
-
-    <div class="gallery">
-
-
-        <figure>
-
-            <img
-                src="assets/01-kantor-desa.jpg"
-                alt="Kantor Desa"
-            >
-
-            <figcaption>
-                Kantor & Lingkungan Desa
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/02-rapat-masyarakat.jpg"
-                alt="Rapat Masyarakat"
-            >
-
-            <figcaption>
-                Rapat Koordinasi
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/03-panen-padi.jpg"
-                alt="Persawahan"
-            >
-
-            <figcaption>
-                Persawahan Seburing
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/04-kegiatan-sawah.jpg"
-                alt="Kegiatan Pertanian"
-            >
-
-            <figcaption>
-                Kegiatan di Lahan Pertanian
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/05-jalan-kampung.jpg"
-                alt="Jalan Kampung"
-            >
-
-            <figcaption>
-                Jalan Kampung
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/06-lingkungan-kebun.jpg"
-                alt="Kebun dan Pohon Kelapa"
-            >
-
-            <figcaption>
-                Lingkungan Hijau
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/07-jalan-desa.jpg"
-                alt="Jalan Desa"
-            >
-
-            <figcaption>
-                Suasana Jalan Desa
-            </figcaption>
-
-        </figure>
-
-
-        <figure>
-
-            <img
-                src="assets/08-banjir.jpg"
-                alt="Banjir"
-            >
-
-            <figcaption>
-                Kondisi Lingkungan Saat Banjir
-            </figcaption>
-
-        </figure>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div>
-
-        <a class="logo">
-            🌿 <span>Kampung Seburing</span>
+        <a href="profil.html" class="btn">
+            Jelajahi Kampung
         </a>
 
-        <p>
-            Mengenal kampung,
-            menjaga kebersamaan.
-        </p>
+    </div>
+
+</section>
+
+
+<!-- TENTANG -->
+<section class="section">
+
+    <div class="container">
+
+        <div class="intro">
+
+            <img src="images/jalan.jpg" alt="Kampung Seburing">
+
+            <div class="intro-text">
+
+                <h2>Tentang Kampung Seburing</h2>
+
+                <p>
+                    Kampung Seburing merupakan bagian dari
+                    Kecamatan Semparuk, Kabupaten Sambas,
+                    Kalimantan Barat.
+                </p>
+
+                <p>
+                    Website ini dibuat sebagai media informasi
+                    untuk memperkenalkan Kampung Seburing,
+                    kehidupan masyarakat, potensi, serta
+                    berbagai kegiatan yang ada di kampung.
+                </p>
+
+                <a href="profil.html" class="btn">
+                    Lihat Profil
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 
+</section>
+
+
+<!-- DATA -->
+<section class="section data-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2 style="color:white;">
+                Sekilas Kampung
+            </h2>
+
+            <p style="color:#d5f5df;">
+                Informasi umum Kampung Seburing
+            </p>
+
+        </div>
+
+        <div class="data-grid">
+
+            <div class="data-card">
+
+                <div class="icon">🏘️</div>
+
+                <h3>01</h3>
+
+                <p>Kampung</p>
+
+            </div>
+
+
+            <div class="data-card">
+
+                <div class="icon">👨‍👩‍👧‍👦</div>
+
+                <h3>—</h3>
+
+                <p>Jumlah Penduduk</p>
+
+            </div>
+
+
+            <div class="data-card">
+
+                <div class="icon">📍</div>
+
+                <h3>Semparuk</h3>
+
+                <p>Kecamatan</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
 
     <p>
-        © <span id="year"></span>
-        Kampung Seburing
+        © 2026 Kampung Seburing
+    </p>
+
+    <p class="footer-small">
+        Kecamatan Semparuk, Kabupaten Sambas,
+        Kalimantan Barat
     </p>
 
 </footer>
-
-
-<button id="topBtn">
-    ↑
-</button>
-
-
-<script src="script.js"></script>
 
 </body>
 </html>
