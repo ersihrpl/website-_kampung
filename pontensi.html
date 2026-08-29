@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Potensi Kampung Seburing</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f8f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #1f5135;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #b7e4c7;
+        }
+
+        /* HEADER */
+        .hero {
+            background: linear-gradient(
+                rgba(31, 81, 53, 0.85),
+                rgba(31, 81, 53, 0.85)
+            ),
+            url("images/kampung.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            min-height: 330px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 17px;
+        }
+
+        /* CONTENT */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+
+        .section-title h2 {
+            color: #1f5135;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #666;
+        }
+
+        /* POTENSI */
+        .potensi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 70px;
+        }
+
+        .potensi-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+        .potensi-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .icon {
+            width: 75px;
+            height: 75px;
+
+            background: #e5f3e9;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 38px;
+
+            margin: 0 auto 20px;
+        }
+
+        .potensi-card h3 {
+            color: #1f5135;
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .potensi-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* INFORMASI */
+        .info {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 60px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        }
+
+        .info h2 {
+            color: #1f5135;
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            color: #555;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1f5135;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer h3 {
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* HP */
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .menu {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 280px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .potensi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+
+        <div class="logo">
+            Kampung Seburing
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="index.html">Beranda</a>
+            </li>
+
+            <li>
+                <a href="profil.html">Profil</a>
+            </li>
+
+            <li>
+                <a href="potensi.html">Potensi</a>
+            </li>
+
+            <li>
+                <a href="galeri.html">Galeri</a>
+            </li>
+
+            <li>
+                <a href="lokasi.html">Lokasi</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div>
+
+            <h1>Potensi Kampung Seburing</h1>
+
+            <p>
+                Mengenal berbagai potensi dan sumber daya
+                yang dimiliki Kampung Seburing, Sungai Palai.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- POTENSI -->
+    <main>
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>🌱 Potensi Kampung</h2>
+
+                <p>
+                    Berbagai potensi yang dapat dikembangkan
+                    untuk meningkatkan kesejahteraan masyarakat.
+                </p>
+
+            </div>
+
+
+            <div class="potensi-grid">
+
+
+                <!-- PERTANIAN -->
+                <div class="potensi-card">
+
+                    <div class="icon">
+                        🌾
+                    </div>
+
+                    <h3>Pertanian</h3>
+
+                    <p>
+                        Sektor pertanian menjadi salah satu potensi
+                        yang dapat dikembangkan sebagai sumber
+                        mata pencaharian masyarakat Kampung Seburing.
+                    </p>
+
+                </div>
+
+
+                <!-- PERKEBUNAN -->
+                <div class="potensi-card">
+
+                    <div class="icon">
+                        🌴
+                    </div>
+
+                    <h3>Perkebunan</h3>
+
+                    <p>
+                        Perkebunan memiliki peluang untuk menjadi
+                        sumber pendapatan masyarakat melalui
+                        pengelolaan hasil perkebunan secara
+                        berkelanjutan.
+                    </p>
+
+                </div>
+
+
+                <!-- PETERNAKAN -->
+                <div class="potensi-card">
+
+                    <div class="icon">
+                        🐄
+                    </div>
+
+                    <h3>Peternakan</h3>
+
+                    <p>
+                        Kegiatan peternakan dapat dikembangkan
+                        sebagai usaha masyarakat sekaligus
+                        mendukung kebutuhan pangan.
+                    </p>
+
+                </div>
+
+
+                <!-- PERIKANAN -->
+                <div class="potensi-card">
+
+                    <div class="icon">
+                        🐟
+                    </div>
+
+                    <h3>Perikanan</h3>
+
+                    <p>
+                        Potensi perikanan dapat dimanfaatkan
+                        untuk memenuhi kebutuhan pangan serta
+                        menjadi peluang usaha bagi masyarakat.
+                    </p>
+
+                </div>
+
+
+                <!-- UMKM -->
+                <div class="potensi-card">
+
+                    <div class="icon">
+                        🏪
+                    </div>
+
+                    <h3>UMKM</h3>
+
+                    <p>
+                        Usaha masyarakat seperti perdagangan,
+                        kuliner, dan berbagai usaha rumahan
+                        dapat dikembangkan menjadi produk unggulan
+                        Kampung Seburing.
+                    </p>
+
+                </div>
+
+
+                <!-- SUMBER DAYA ALAM -->
+                <div class="potensi-card">
+
+                    <div class="icon">
+                        🌳
+                    </div>
+
+                    <h3>Sumber Daya Alam</h3>
+
+                    <p>
+                        Lingkungan alam Kampung Seburing memiliki
+                        potensi yang dapat dimanfaatkan secara
+                        bijak dengan tetap menjaga kelestarian
+                        lingkungan.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- INFORMASI -->
+            <div class="info">
+
+                <h2>🌿 Pengembangan Potensi</h2>
+
+                <p>
+                    Potensi yang dimiliki Kampung Seburing dapat
+                    dikembangkan melalui kerja sama antara
+                    masyarakat dan pemerintah kampung. Pengelolaan
+                    sumber daya secara baik diharapkan dapat
+                    membuka peluang usaha, meningkatkan pendapatan,
+                    serta mendukung kemajuan Kampung Seburing.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>Kampung Seburing</h3>
+
+        <p>
+            Sungai Palai
+        </p>
+
+        <p>
+            © 2026 Kampung Seburing. Semua Hak Dilindungi.
+        </p>
+
+    </footer>
+
+</body>
+</html>
