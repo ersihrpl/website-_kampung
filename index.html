@@ -1,341 +1,707 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Portofolio Saya</title>
+    <title>Kampung Seburing</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-      font-family: Arial, sans-serif;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    body {
-      background: #f1f8f4;
-      color: #173b2b;
-      line-height: 1.6;
-    }
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
-    /* NAVBAR */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(20, 83, 45, 0.95);
-      padding: 15px 20px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 8px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      color: #b7f7c8;
-    }
-
-    /* HOME */
-    #home {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 100px 20px 50px;
-      background: linear-gradient(135deg, #14532d, #3fa66b);
-      color: white;
-    }
-
-    .home-content {
-      max-width: 700px;
-    }
-
-    .profile-img {
-      width: 170px;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 5px solid white;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-
-    .home-content h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    .home-content p {
-      font-size: 18px;
-      margin-bottom: 25px;
-    }
-
-    .button {
-      display: inline-block;
-      background: white;
-      color: #14532d;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* SECTION */
-    section {
-      padding: 80px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 30px;
-      margin-bottom: 35px;
-      color: #14532d;
-    }
-
-    /* ABOUT */
-    .about {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
-
-    /* SKILLS */
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .skill {
-      background: white;
-      padding: 25px 15px;
-      text-align: center;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-      font-weight: bold;
-    }
-
-    /* PROJECT */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .project {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-    }
-
-    .project h3 {
-      color: #187a43;
-      margin-bottom: 10px;
-    }
-
-    /* EDUCATION */
-    .education {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-    }
-
-    /* CONTACT */
-    .contact {
-      text-align: center;
-      background: #14532d;
-      color: white;
-      border-radius: 20px;
-      padding: 35px 20px;
-    }
-
-    .contact a {
-      color: #c9f7d5;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #0b2e1a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    /* HP */
-    @media (max-width: 600px) {
-      .home-content h1 {
-        font-size: 30px;
-      }
-
-      .home-content p {
-        font-size: 16px;
-      }
-
-      nav {
-        padding: 12px 5px;
-      }
-
-      nav a {
-        font-size: 12px;
-        margin: 0 4px;
-      }
-
-      section {
-        padding: 70px 15px;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skill</a>
-    <a href="#projects">Project</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<!-- ================= NAVBAR ================= -->
 
-  <!-- HOME -->
-  <section id="home">
-    <div class="home-content">
+<header id="navbar">
 
-      <!-- GANTI FOTO DI SINI -->
-      <img src="foto-saya.jpg" class="profile-img" alt="Foto Saya">
+    <a href="#beranda" class="logo">
+        🌿 <span>Seburing</span>
+    </a>
 
-      <!-- GANTI NAMA DI SINI -->
-      <h1>Nama Kamu</h1>
+    <button id="menuBtn">☰</button>
 
-      <p>
-        Fresh Graduate Rekayasa Perangkat Lunak (RPL)
-      </p>
+    <nav id="nav">
+        <a href="#beranda">Beranda</a>
+        <a href="#sejarah">Sejarah</a>
+        <a href="#penduduk">Penduduk</a>
+        <a href="#persawahan">Persawahan</a>
+        <a href="#kegiatan">Kegiatan</a>
+        <a href="#lingkungan">Lingkungan</a>
+        <a href="#lokasi">Lokasi</a>
+        <a href="#galeri">Galeri</a>
+    </nav>
 
-      <a href="#about" class="button">Lihat Profil</a>
-    </div>
-  </section>
+</header>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2 class="title">Tentang Saya</h2>
 
-    <div class="about">
-      <p>
-        Halo! Saya adalah lulusan baru jurusan Rekayasa Perangkat Lunak
-        (RPL) yang memiliki ketertarikan pada dunia teknologi, khususnya
-        pengembangan website dan aplikasi.
-      </p>
+<!-- ================= HERO ================= -->
 
-      <br>
+<section class="hero" id="beranda">
 
-      <p>
-        Selama sekolah saya telah mengerjakan berbagai proyek dan
-        melaksanakan Praktik Kerja Lapangan (PKL). Saya mampu bekerja
-        secara individu maupun dalam tim dan terus ingin mengembangkan
-        kemampuan saya di bidang teknologi.
-      </p>
-    </div>
-  </section>
+    <div class="hero-bg"></div>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2 class="title">Keahlian</h2>
+    <div class="hero-content">
 
-    <div class="skills">
-      <div class="skill">HTML</div>
-      <div class="skill">CSS</div>
-      <div class="skill">JavaScript</div>
-      <div class="skill">PHP</div>
-      <div class="skill">Database</div>
-      <div class="skill">Web Development</div>
-    </div>
-  </section>
-
-  <!-- PROJECT -->
-  <section id="projects">
-    <h2 class="title">Project Saya</h2>
-
-    <div class="projects">
-
-      <div class="project">
-        <h3>Website Profil</h3>
-        <p>
-          Membuat website profil sederhana menggunakan HTML dan CSS.
+        <p class="tag">
+            KAMPUNG KITA • SEBURING
         </p>
-      </div>
 
-      <div class="project">
-        <h3>Project Sekolah</h3>
+        <h1>
+            Selamat Datang di
+            <br>
+            <span>Kampung Seburing</span>
+        </h1>
+
         <p>
-          Mengembangkan project website sebagai bagian dari tugas
-          pembelajaran Rekayasa Perangkat Lunak.
+            Mengenal sejarah, masyarakat, pertanian,
+            kegiatan, lingkungan, dan kehidupan warga
+            Kampung Seburing.
         </p>
-      </div>
 
-      <div class="project">
-        <h3>Project PKL</h3>
+        <div class="hero-buttons">
+
+            <a href="#sejarah" class="btn">
+                Jelajahi Kampung
+            </a>
+
+            <a href="#galeri" class="btn outline">
+                Lihat Galeri
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="scroll">
+        ↓ Scroll
+    </div>
+
+</section>
+
+
+<!-- ================= DATA SINGKAT ================= -->
+
+<section class="quick">
+
+    <div>
+        <b>4.542</b>
+        <small>Jumlah Penduduk</small>
+    </div>
+
+    <div>
+        <b>1.266 Ha</b>
+        <small>Luas Wilayah</small>
+    </div>
+
+    <div>
+        <b>3</b>
+        <small>Dusun</small>
+    </div>
+
+    <div>
+        <b>21</b>
+        <small>RT</small>
+    </div>
+
+</section>
+
+
+<!-- ================= SEJARAH ================= -->
+
+<section class="section" id="sejarah">
+
+    <div class="heading">
+
+        <p class="tag dark">
+            SEJARAH
+        </p>
+
+        <h2>
+            Cerita di balik nama
+            <span>Seburing</span>
+        </h2>
+
+    </div>
+
+
+    <div class="two-col">
+
+        <img
+            class="feature-img"
+            src="assets/01-kantor-desa.jpg"
+            alt="Kantor dan lingkungan Desa Seburing"
+        >
+
+        <div>
+
+            <p>
+                Secara historis, Desa Seburing diperkirakan
+                berdiri dan diresmikan sekitar tahun
+                <b>1900</b>.
+            </p>
+
+            <p>
+                Berdasarkan keterangan masyarakat,
+                nama Seburing berkaitan dengan seorang
+                penduduk asli bernama <b>Pak Buring</b>
+                yang dahulu merintis desa.
+            </p>
+
+            <p>
+                Seiring berjalannya waktu, kehidupan
+                masyarakat dan pemerintahan desa terus
+                berkembang hingga sekarang.
+            </p>
+
+            <div class="quote">
+
+                “Sejarah kampung adalah cerita yang
+                menghubungkan generasi terdahulu
+                dengan generasi hari ini.”
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PENDUDUK ================= -->
+
+<section class="section cream" id="penduduk">
+
+    <div class="heading">
+
+        <p class="tag dark">
+            DATA KAMPUNG
+        </p>
+
+        <h2>
+            Jumlah
+            <span>Penduduk</span>
+        </h2>
+
+    </div>
+
+
+    <div class="population">
+
+        <div class="pop-card">
+
+            <span>👨</span>
+
+            <b>2.346</b>
+
+            <small>
+                Laki-laki
+            </small>
+
+        </div>
+
+
+        <div class="pop-card">
+
+            <span>👩</span>
+
+            <b>2.196</b>
+
+            <small>
+                Perempuan
+            </small>
+
+        </div>
+
+
+        <div class="pop-card total">
+
+            <span>👨‍👩‍👧‍👦</span>
+
+            <b>4.542</b>
+
+            <small>
+                Total Penduduk
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PERSAWAHAN ================= -->
+
+<section class="section" id="persawahan">
+
+    <div class="heading">
+
+        <p class="tag dark">
+            POTENSI ALAM
+        </p>
+
+        <h2>
+            Persawahan
+            <span>Seburing</span>
+        </h2>
+
+    </div>
+
+
+    <div class="farm-grid">
+
+        <div>
+
+            <p>
+                Persawahan menjadi bagian penting
+                dari kehidupan masyarakat Kampung
+                Seburing.
+            </p>
+
+            <p>
+                Hamparan tanaman padi menunjukkan
+                potensi pertanian sekaligus aktivitas
+                masyarakat di wilayah pedesaan.
+            </p>
+
+            <p>
+                Pertanian bukan hanya tentang hasil
+                panen, tetapi juga tentang kerja sama,
+                pengetahuan warga, dan keberlanjutan
+                sumber penghidupan kampung.
+            </p>
+
+
+            <div class="mini-list">
+
+                <span>🌾 Pertanian</span>
+                <span>💧 Pengairan</span>
+                <span>👩‍🌾 Kelompok Tani</span>
+
+            </div>
+
+        </div>
+
+
+        <img
+            src="assets/03-panen-padi.jpg"
+            alt="Persawahan Kampung Seburing"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- ================= KEGIATAN ================= -->
+
+<section class="section cream" id="kegiatan">
+
+    <div class="heading">
+
+        <p class="tag dark">
+            MASYARAKAT
+        </p>
+
+        <h2>
+            Kegiatan
+            <span>Masyarakat</span>
+        </h2>
+
+    </div>
+
+
+    <div class="activity-grid">
+
+
+        <!-- RAPAT -->
+
+        <article>
+
+            <img
+                src="assets/02-rapat-masyarakat.jpg"
+                alt="Rapat koordinasi masyarakat"
+            >
+
+            <div>🤝</div>
+
+            <h3>
+                Rapat & Koordinasi
+            </h3>
+
+            <p>
+                Warga dan pengurus berkumpul
+                untuk membahas kegiatan,
+                kebutuhan, serta perkembangan
+                kampung.
+            </p>
+
+        </article>
+
+
+        <!-- SAWAH -->
+
+        <article>
+
+            <img
+                src="assets/04-kegiatan-sawah.jpg"
+                alt="Kegiatan masyarakat di sawah"
+            >
+
+            <div>🌾</div>
+
+            <h3>
+                Kegiatan Pertanian
+            </h3>
+
+            <p>
+                Aktivitas di lahan persawahan
+                memperlihatkan semangat
+                kebersamaan masyarakat.
+            </p>
+
+        </article>
+
+
+        <!-- KANTOR -->
+
+        <article>
+
+            <img
+                src="assets/01-kantor-desa.jpg"
+                alt="Lingkungan kantor desa"
+            >
+
+            <div>🏡</div>
+
+            <h3>
+                Kehidupan Kampung
+            </h3>
+
+            <p>
+                Lingkungan desa menjadi ruang
+                bertemu, bekerja, dan menjalankan
+                kegiatan sehari-hari.
+            </p>
+
+        </article>
+
+
+        <!-- JALAN -->
+
+        <article>
+
+            <img
+                src="assets/07-jalan-desa.jpg"
+                alt="Jalan desa"
+            >
+
+            <div>🛣️</div>
+
+            <h3>
+                Akses & Lingkungan
+            </h3>
+
+            <p>
+                Jalan kampung menjadi penghubung
+                aktivitas warga dan bagian dari
+                wajah wilayah Seburing.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LINGKUNGAN ================= -->
+
+<section class="section" id="lingkungan">
+
+    <div class="heading">
+
+        <p class="tag dark">
+            LINGKUNGAN
+        </p>
+
+        <h2>
+            Wajah alami
+            <span>Seburing</span>
+        </h2>
+
+    </div>
+
+
+    <div class="environment-grid">
+
+        <img
+            src="assets/06-lingkungan-kebun.jpg"
+            alt="Kebun dan pohon kelapa"
+        >
+
+
+        <div>
+
+            <h3>
+                Lingkungan yang hijau
+                dan dekat dengan alam
+            </h3>
+
+            <p>
+                Pepohonan, kebun, dan tanaman
+                kelapa menjadi bagian dari
+                pemandangan sehari-hari di
+                Kampung Seburing.
+            </p>
+
+            <p>
+                Lingkungan ini menunjukkan
+                karakter pedesaan yang masih
+                kuat dan dekat dengan alam.
+            </p>
+
+
+            <img
+                src="assets/08-banjir.jpg"
+                alt="Kondisi banjir"
+                class="small-photo"
+            >
+
+            <p class="caption">
+                Dokumentasi kondisi lingkungan
+                saat terjadi genangan atau banjir.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOKASI ================= -->
+
+<section class="section location" id="lokasi">
+
+    <div class="location-box">
+
+        <div>
+
+            <p class="tag">
+                LOKASI KAMPUNG
+            </p>
+
+            <h2>
+                Di mana
+                <span>Seburing?</span>
+            </h2>
+
+            <p>
+                Desa Seburing berada di Kecamatan
+                Semparuk, Kabupaten Sambas,
+                Provinsi Kalimantan Barat,
+                Indonesia.
+            </p>
+
+            <a
+                class="btn"
+                target="_blank"
+                href="https://www.google.com/maps/search/?api=1&query=Desa+Seburing+Semparuk+Sambas"
+            >
+                📍 Buka Google Maps
+            </a>
+
+        </div>
+
+
+        <img
+            class="location-photo"
+            src="assets/05-jalan-kampung.jpg"
+            alt="Jalan Kampung Seburing"
+        >
+
+    </div>
+
+</section>
+
+
+<!-- ================= GALERI ================= -->
+
+<section class="section cream" id="galeri">
+
+    <div class="heading">
+
+        <p class="tag dark">
+            GALERI
+        </p>
+
+        <h2>
+            Wajah
+            <span>Kampung Kita</span>
+        </h2>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+        <figure>
+
+            <img
+                src="assets/01-kantor-desa.jpg"
+                alt="Kantor Desa"
+            >
+
+            <figcaption>
+                Kantor & Lingkungan Desa
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/02-rapat-masyarakat.jpg"
+                alt="Rapat Masyarakat"
+            >
+
+            <figcaption>
+                Rapat Koordinasi
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/03-panen-padi.jpg"
+                alt="Persawahan"
+            >
+
+            <figcaption>
+                Persawahan Seburing
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/04-kegiatan-sawah.jpg"
+                alt="Kegiatan Pertanian"
+            >
+
+            <figcaption>
+                Kegiatan di Lahan Pertanian
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/05-jalan-kampung.jpg"
+                alt="Jalan Kampung"
+            >
+
+            <figcaption>
+                Jalan Kampung
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/06-lingkungan-kebun.jpg"
+                alt="Kebun dan Pohon Kelapa"
+            >
+
+            <figcaption>
+                Lingkungan Hijau
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/07-jalan-desa.jpg"
+                alt="Jalan Desa"
+            >
+
+            <figcaption>
+                Suasana Jalan Desa
+            </figcaption>
+
+        </figure>
+
+
+        <figure>
+
+            <img
+                src="assets/08-banjir.jpg"
+                alt="Banjir"
+            >
+
+            <figcaption>
+                Kondisi Lingkungan Saat Banjir
+            </figcaption>
+
+        </figure>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+
+        <a class="logo">
+            🌿 <span>Kampung Seburing</span>
+        </a>
+
         <p>
-          Mendapatkan pengalaman dalam mengerjakan tugas dan project
-          selama Praktik Kerja Lapangan.
+            Mengenal kampung,
+            menjaga kebersamaan.
         </p>
-      </div>
 
     </div>
-  </section>
 
-  <!-- EDUCATION -->
-  <section>
-    <h2 class="title">Pendidikan</h2>
 
-    <div class="education">
-      <h3>SMK - Rekayasa Perangkat Lunak</h3>
-      <p>
-        Jurusan Rekayasa Perangkat Lunak (RPL)
-      </p>
-    </div>
-  </section>
+    <p>
+        © <span id="year"></span>
+        Kampung Seburing
+    </p>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact">
-      <h2>Hubungi Saya</h2>
+</footer>
 
-      <br>
 
-      <p>Email: emailkamu@gmail.com</p>
-      <p>Instagram: @usernamekamu</p>
+<button id="topBtn">
+    ↑
+</button>
 
-      <br>
 
-      <p>
-        Terima kasih sudah mengunjungi website saya!
-      </p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Nama Kamu | Portfolio
-  </footer>
+<script src="script.js"></script>
 
 </body>
-  </html>
+</html>
