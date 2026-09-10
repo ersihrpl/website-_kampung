@@ -14,14 +14,14 @@ if (form) {
     };
 
     try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbykRERt_49lPWjTdJuXMwF5IQpNaeBmJeDihEEJqBnekwAk6T1A-t-c50lGq4c7qhjAKw/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(data)
-        }
-      );
-
+      
+await fetch(
+  "https://script.google.com/macros/s/AKfycbwnEw-95Ikj6Cmdf9PA2kIxOFDb3T-W7F2OrzkKtgMgtmiQplLwXF_RgGgr6GZXqdxJoQ/exec",
+  {
+    method: "POST",
+    body: JSON.stringify(data)
+  }
+);
       status.textContent = "✅ Pesan berhasil dikirim!";
       form.reset();
 
