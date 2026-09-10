@@ -204,75 +204,7 @@
     </p>
 
 </footer>
-    <!-- DATABASE KEGIATAN -->
-<section class="section database-section">
-
-    <div class="container">
-
-        <div class="section-title">
-            <h2>Data Kegiatan Kampung Seburing</h2>
-            <p>Informasi kegiatan masyarakat Kampung Seburing</p>
-        </div>
-
-        <div id="dataKegiatan" class="data-grid">
-            <p>Memuat data...</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<script>
-const DATABASE_URL = "https://script.google.com/macros/s/AKfycbyBv6zyyH_OXbm3GCuvoyF40M0d9UqgwM-WuuZKDYMAUhYNIMlicAPyFGjAZpqUJADQ3A/exec";
-
-fetch(DATABASE_URL)
-    .then(response => response.json())
-    .then(data => {
-
-        const container = document.getElementById("dataKegiatan");
-
-        if (data.length === 0) {
-            container.innerHTML = `
-                <p>Belum ada data kegiatan.</p>
-            `;
-            return;
-        }
-
-        container.innerHTML = "";
-
-        data.forEach(item => {
-
-            container.innerHTML += `
-                <div class="data-card">
-
-                    <div class="icon">📋</div>
-
-                    <h3>${item.nama || "-"}</h3>
-
-                    <p>
-                        ${item.keterangan || "-"}
-                    </p>
-
-                    <small>
-                        📅 ${item.tanggal || "-"}
-                    </small>
-
-                </div>
-            `;
-
-        });
-
-    })
-    .catch(error => {
-
-        document.getElementById("dataKegiatan").innerHTML = `
-            <p>Data belum dapat dimuat.</p>
-        `;
-
-        console.error(error);
-
-    });
+    
 </script>
 
 </body>
