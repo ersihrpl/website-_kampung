@@ -16,7 +16,7 @@ if (form) {
     try {
       
 await fetch(
-  "https://script.google.com/macros/s/AKfycbwnEw-95Ikj6Cmdf9PA2kIxOFDb3T-W7F2OrzkKtgMgtmiQplLwXF_RgGgr6GZXqdxJoQ/exec",
+  "https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec",
   {
     method: "POST",
     body: JSON.stringify(data)
