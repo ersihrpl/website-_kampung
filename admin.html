@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pengaduan</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .login-box {
+            max-width: 400px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        #dashboard {
+            display: none;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .data-box {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN ADMIN -->
+    <div class="login-box" id="loginBox">
+
+        <h2>🔐 Login Admin</h2>
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="loginAdmin()">Login</button>
+
+        <p id="pesanLogin"></p>
+
+    </div>
+
+
+    <!-- DASHBOARD ADMIN -->
+    <div id="dashboard">
+
+        <h1>📊 Dashboard Admin</h1>
+
+        <p>Selamat datang di panel admin.</p>
+
+        <button onclick="logout()">Logout</button>
+
+        <div class="data-box">
+
+            <h2>📩 Data Pengaduan Masyarakat</h2>
+
+            <div id="dataPengaduan">
+                Data pengaduan akan tampil di sini.
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+function loginAdmin() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (username === "admin" && password === "12345") {
+
+        document.getElementById("loginBox").style.display = "none";
+
+        document.getElementById("dashboard").style.display = "block";
+
+    } else {
+
+        document.getElementById("pesanLogin").innerText =
+            "Username atau password salah!";
+
+    }
+
+}
+
+
+function logout() {
+
+    document.getElementById("dashboard").style.display = "none";
+
+    document.getElementById("loginBox").style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>
