@@ -102,21 +102,129 @@
 
 <script>
 
-function loginAdmin() {
+const DATABASE_URL = "https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec";
 
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
+
+async function loginAdmin() {
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
     if (username === "admin" && password === "12345") {
 
         document.getElementById("loginBox").style.display = "none";
-
         document.getElementById("dashboard").style.display = "block";
+
+        // Ambil data pengaduan
+        tampilkanPengaduan();
 
     } else {
 
         document.getElementById("pesanLogin").innerText =
             "Username atau password salah!";
+
+    }
+}
+
+
+async function tampilkanPengaduan() {
+
+    const tempatData = document.getElementById("dataPengaduan");
+
+    tempatData.innerHTML = "⏳ Mengambil data pengaduan...";
+
+    try {
+
+        const response = await fetch(DATABASE_URL);
+
+        const data = await response.json();
+
+        if (data.length === 0) {
+
+            tempatData.innerHTML =
+                "<p>📭 Belum ada pengaduan.</p>";
+
+            return;
+        }
+
+
+        let tabel = `
+            <table style="
+                width:100%;
+                border-collapse:collapse;
+                margin-top:15px;
+            ">
+
+                <tr style="background:#2563eb;color:white;">
+
+                    <th style="padding:10px;border:1px solid #ddd;">
+                        No
+                    </th>
+
+                    <th style="padding:10px;border:1px solid #ddd;">
+                        Nama
+                    </th>
+
+                    <th style="padding:10px;border:1px solid #ddd;">
+                        Email
+                    </th>
+
+                    <th style="padding:10px;border:1px solid #ddd;">
+                        Pengaduan
+                    </th>
+
+                    <th style="padding:10px;border:1px solid #ddd;">
+                        Tanggal
+                    </th>
+
+                </tr>
+        `;
+
+
+        data.forEach((item, index) => {
+
+            tabel += `
+
+                <tr>
+
+                    <td style="padding:10px;border:1px solid #ddd;">
+                        ${index + 1}
+                    </td>
+
+                    <td style="padding:10px;border:1px solid #ddd;">
+                        ${item.nama || "-"}
+                    </td>
+
+                    <td style="padding:10px;border:1px solid #ddd;">
+                        ${item.email || "-"}
+                    </td>
+
+                    <td style="padding:10px;border:1px solid #ddd;">
+                        ${item.pesan || "-"}
+                    </td>
+
+                    <td style="padding:10px;border:1px solid #ddd;">
+                        ${item.tanggal || "-"}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+
+        tabel += "</table>";
+
+        tempatData.innerHTML = tabel;
+
+
+    } catch (error) {
+
+        tempatData.innerHTML =
+            "❌ Gagal mengambil data pengaduan.";
+
+        console.error(error);
 
     }
 
