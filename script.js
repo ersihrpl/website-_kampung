@@ -1,7 +1,7 @@
 const form = document.getElementById("contactForm");
 const status = document.getElementById("status");
 
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   status.innerHTML = "⏳ Mengirim pesan...";
@@ -14,12 +14,12 @@ form.addEventListener("submit", function(e) {
     pesan: document.getElementById("pesan").value
   };
 
-  fetch(fetch("https://script.google.com/macros/s/AKfycbyt2Th3zmCk94dWf5JRiGNrpPTO6gcpL4Sk48QfyHYxVL9MD_LNHPJpw3XehWPdY39WMw/exec", { {
+  fetch("https://script.google.com/macros/s/AKfycbyt2Th3zmCk94dWf5JRiGNrpPTO6gcpL4Sk48QfyHYxVL9MD_LNHPJpw3XehWPdY39WMw/exec", {
     method: "POST",
+    mode: "no-cors",
     body: JSON.stringify(data)
   })
-  .then(response => response.text())
-  .then(result => {
+  .then(function () {
 
     status.innerHTML =
       "✅ Terima kasih telah menghubungi Web Desa Seburing!<br>" +
@@ -30,7 +30,7 @@ form.addEventListener("submit", function(e) {
 
     form.reset();
   })
-  .catch(error => {
+  .catch(function (error) {
 
     status.innerHTML =
       "❌ Pesan gagal dikirim.<br>" +
@@ -39,5 +39,6 @@ form.addEventListener("submit", function(e) {
     status.style.background = "#fdeaea";
     status.style.color = "#b42318";
 
+    console.log(error);
   });
 });
