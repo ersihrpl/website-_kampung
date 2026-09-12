@@ -1,33 +1,43 @@
 const form = document.getElementById("contactForm");
 const status = document.getElementById("status");
 
-if (form) {
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    status.textContent = "Mengirim pesan...";
+  status.innerHTML = "⏳ Mengirim pesan...";
+  status.style.background = "#fff3cd";
+  status.style.color = "#856404";
 
-    const data = {
-      nama: document.getElementById("nama").value,
-      email: document.getElementById("email").value,
-      pesan: document.getElementById("pesan").value
-    };
+  const data = {
+    nama: document.getElementById("nama").value,
+    email: document.getElementById("email").value,
+    pesan: document.getElementById("pesan").value
+  };
 
-    try {
-      
-await fetch(
-  "https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec",
-  {
+  fetch(https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec, {
     method: "POST",
     body: JSON.stringify(data)
-  }
-);
-      status.textContent = "✅ Pesan berhasil dikirim!";
-      form.reset();
+  })
+  .then(response => response.text())
+  .then(result => {
 
-    } catch (error) {
-      status.textContent = "❌ Pesan gagal dikirim.";
-      console.error(error);
-    }
+    status.innerHTML =
+      "✅ Terima kasih telah menghubungi Web Desa Seburing!<br>" +
+      "Pesan Anda telah berhasil dikirim.";
+
+    status.style.background = "#e8f5ef";
+    status.style.color = "#096b48";
+
+    form.reset();
+  })
+  .catch(error => {
+
+    status.innerHTML =
+      "❌ Pesan gagal dikirim.<br>" +
+      "Silakan coba lagi.";
+
+    status.style.background = "#fdeaea";
+    status.style.color = "#b42318";
+
   });
-}
+});
