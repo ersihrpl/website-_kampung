@@ -124,6 +124,54 @@
     </div>
 
 </section>
+                        <!-- FORM PESAN -->
+<section class="pesan-section">
+  <div class="papan-pesan">
+
+    <div class="judul-pesan">
+      <span>📩</span>
+      <h2>Kirim Pesan</h2>
+      <p>Hubungi Web Kampung Seburing</p>
+    </div>
+
+    <form id="contactForm">
+
+      <label for="nama">Nama</label>
+      <input
+        type="text"
+        id="nama"
+        placeholder="Masukkan nama Anda"
+        required
+      >
+
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Masukkan email Anda"
+        required
+      >
+
+      <label for="pesan">Pesan</label>
+      <textarea
+        id="pesan"
+        placeholder="Tulis pesan Anda di sini..."
+        required
+      ></textarea>
+
+      <button type="submit">
+        📨 Kirim Pesan
+      </button>
+
+      <!-- UCAPAN SETELAH PESAN TERKIRIM -->
+      <div id="status"></div>
+
+    </form>
+
+  </div>
+</section>
+
+<script src="script.js"></script>
 
 
 <footer>
@@ -135,21 +183,6 @@
     </p>
 
 </footer>
-                        <section id="kontak" class="section">
-
-  <form id="contactForm">
-
-    <input type="text" id="nama" placeholder="Nama" required>
-
-    <input type="email" id="email" placeholder="Email" required>
-
-    <textarea id="pesan" placeholder="Tulis pesan..." required></textarea>
-
-    <button type="submit">Kirim Pesan</button>
-
-    <p id="status"></p>
-
-  </form>
-        <script src="script.js"></script>
+                        
 </body>
 </html>
