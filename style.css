@@ -519,6 +519,7 @@ footer p {
 .leaf3 { left: 50%; animation-delay: 2s; }
 .leaf4 { left: 70%; animation-delay: 3s; }
 .leaf5 { left: 90%; animation-delay: 4s; }
+.leaf6 { left: 15%; animation-delay: 2.5s; }
 
 @keyframes jatuh {
     0% {
