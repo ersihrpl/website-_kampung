@@ -14,7 +14,7 @@ form.addEventListener("submit", function(e) {
     pesan: document.getElementById("pesan").value
   };
 
-  fetch(https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec, {
+  fetch(fetch("https://script.google.com/macros/s/AKfycbyt2Th3zmCk94dWf5JRiGNrpPTO6gcpL4Sk48QfyHYxVL9MD_LNHPJpw3XehWPdY39WMw/exec", { {
     method: "POST",
     body: JSON.stringify(data)
   })
