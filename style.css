@@ -388,3 +388,110 @@ footer p {
         font-size: 28px;
     }
 }
+
+/* =========================
+   FORM PESAN
+========================= */
+
+.pesan-section {
+  padding: 60px 20px;
+  background: #f4f8f6;
+}
+
+.papan-pesan {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-top: 8px solid #096b48;
+}
+
+/* Judul */
+
+.judul-pesan {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.judul-pesan span {
+  font-size: 40px;
+}
+
+.judul-pesan h2 {
+  margin: 10px 0 5px;
+  color: #096b48;
+  font-size: 28px;
+}
+
+.judul-pesan p {
+  margin: 0;
+  color: #666;
+}
+
+/* Label */
+
+.papan-pesan label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 7px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input */
+
+.papan-pesan input,
+.papan-pesan textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+}
+
+.papan-pesan input:focus,
+.papan-pesan textarea:focus {
+  border-color: #096b48;
+}
+
+/* Kotak pesan */
+
+.papan-pesan textarea {
+  height: 140px;
+  resize: vertical;
+}
+
+/* Tombol */
+
+.papan-pesan button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #096b48;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.papan-pesan button:hover {
+  background: #075238;
+}
+
+/* Pesan setelah dikirim */
+
+#status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.5;
+}
