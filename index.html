@@ -19,29 +19,13 @@
     <span class="leaf leaf6"></span>
     </div>
 
-<!-- MUSIK -->
-<div class="music-box">
-    <button id="tombolMusik">🎵</button>
-
-    <audio id="musik" loop>
+<!-- TES MUSIK -->
+<div style="text-align:center; margin:20px;">
+    <audio controls>
         <source src="./334acffa6d0ed3abc8d55d0584a677ef.mp3" type="audio/mpeg">
+        Browser tidak mendukung audio.
     </audio>
 </div>
-
-<script>
-const tombol = document.getElementById("tombolMusik");
-const musik = document.getElementById("musik");
-
-tombol.addEventListener("click", function() {
-    if (musik.paused) {
-        musik.play();
-        tombol.textContent = "⏸️";
-    } else {
-        musik.pause();
-        tombol.textContent = "🎵";
-    }
-});
-</script>
 <!-- NAVBAR -->
 <nav class="navbar">
 
