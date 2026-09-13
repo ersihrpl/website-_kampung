@@ -538,36 +538,18 @@ footer p {
 }
 .music-box {
     position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 99999;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999999;
 }
 
-.music-box button {
+.music-button {
     width: 50px;
     height: 50px;
     border: none;
     border-radius: 50%;
     background: #16834f;
     color: white;
-    font-size: 23px;
-}
-
-.youtube-music {
-    display: none;
-    position: absolute;
-    right: 0;
-    bottom: 60px;
-    width: 280px;
-    height: 158px;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-.youtube-music iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
+    font-size: 22px;
+    cursor: pointer;
 }
