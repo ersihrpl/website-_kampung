@@ -18,27 +18,30 @@
     <span class="leaf leaf5"></span>
     <span class="leaf leaf6"></span>
     </div>
+
 <!-- MUSIK -->
 <div class="music-box">
-    <button onclick="putarMusik()" class="music-button">🎵</button>
+    <button id="tombolMusik">🎵</button>
 
     <audio id="musik" loop>
-        <source src="334acffa6d0ed3abc8d55d0584a677ef.mp3" type="audio/mpeg">
+        <source src="./334acffa6d0ed3abc8d55d0584a677ef.mp3" type="audio/mpeg">
     </audio>
 </div>
 
 <script>
-function putarMusik() {
-    const musik = document.getElementById("musik");
+const tombol = document.getElementById("tombolMusik");
+const musik = document.getElementById("musik");
 
+tombol.addEventListener("click", function() {
     if (musik.paused) {
         musik.play();
+        tombol.textContent = "⏸️";
     } else {
         musik.pause();
+        tombol.textContent = "🎵";
     }
-}
+});
 </script>
-
 <!-- NAVBAR -->
 <nav class="navbar">
 
