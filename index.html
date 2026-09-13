@@ -18,27 +18,10 @@
     <span class="leaf leaf5"></span>
     <span class="leaf leaf6"></span>
     </div>
-<div class="music-box">
-
-    <button onclick="putarMusik()">🎵</button>
-
-    <audio id="musik" loop>
-        <source src="https://raw.githubusercontent.com/ersirhpl/website-_kampung/main/334acffa6d0ed3abc8d55d0584a677ef.mp3" type="audio/mpeg">
-    </audio>
-
-</div>
-
-<script>
-function putarMusik() {
-    const musik = document.getElementById("musik");
-
-    if (musik.paused) {
-        musik.play();
-    } else {
-        musik.pause();
-    }
-}
-</script>
+<audio controls>
+    <source src="334acffa6d0ed3abc8d55d0584a677ef.mp3" type="audio/mpeg">
+    Browser tidak mendukung audio.
+</audio>
 
 <!-- NAVBAR -->
 <nav class="navbar">
