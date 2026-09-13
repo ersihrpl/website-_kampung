@@ -18,29 +18,16 @@
     <span class="leaf leaf5"></span>
     <span class="leaf leaf6"></span>
     </div>
-<!-- MUSIK TEH HIJAU -->
-<div class="music-box">
-    <button onclick="bukaMusik()">🎵</button>
+<!-- MUSIK -->
+<button onclick="putarMusik()" class="music-button">🎵</button>
 
-    <div id="youtubeMusic" class="youtube-music">
-        <iframe
-            src="https://www.youtube.com/embed/RO75uUZiAw0"
-            title="Teh Hijau"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>
-    </div>
-</div>
+<audio id="musik" loop>
+    <source src="334acffa6d0ed3abc8d55d0584a677ef.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function bukaMusik() {
-    const musik = document.getElementById("youtubeMusic");
-
-    if (musik.style.display === "block") {
-        musik.style.display = "none";
-    } else {
-        musik.style.display = "block";
-    }
+function putarMusik() {
+    document.getElementById("musik").play();
 }
 </script>
     
