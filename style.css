@@ -536,41 +536,38 @@ footer p {
         transform: translateX(-50px) rotate(360deg);
     }
 }
-/* TOMBOL MUSIK */
 .music-box {
     position: fixed;
     right: 18px;
     bottom: 18px;
-    z-index: 9999;
+    z-index: 99999;
 }
 
 .music-box button {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border: none;
     border-radius: 50%;
-    background: #176b45;
+    background: #16834f;
     color: white;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    font-size: 23px;
 }
 
 .youtube-music {
     display: none;
     position: absolute;
     right: 0;
-    bottom: 55px;
-    width: 260px;
-    height: 150px;
+    bottom: 60px;
+    width: 280px;
+    height: 158px;
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .youtube-music iframe {
     width: 100%;
     height: 100%;
-    border: none;
+    border: 0;
 }
