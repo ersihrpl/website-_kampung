@@ -191,7 +191,7 @@ body {
 .page-header {
     background:
         linear-gradient(rgba(18,107,69,0.88), rgba(18,107,69,0.88)),
-        url("images/jalan.jpg") center/cover;
+        url("halaman.jpg") center/cover;
 
     color: white;
     text-align: center;
