@@ -3,8 +3,8 @@ const status = document.getElementById("status");
 
 // URL Google Apps Script kamu
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbyt2Th3zmCk94dWf5JRiGNrpPTO6gcpL4Sk48QfyHYxVL9MD_LNHPJpw3XehWPdY39WMw/exec";
-
+  const API_URL =
+  "https://script.google.com/macros/s/AKfycbw2UAZC4UIbNLU81ue50_8DRs6REehpsncplU_VgBqxK2SgyGGu-fETIDggLAS41lwTgw/exec";
 
 // ==========================================
 // MEMBUAT TOKEN
