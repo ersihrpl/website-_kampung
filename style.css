@@ -60,7 +60,7 @@ body {
     min-height: 88vh;
     background:
         linear-gradient(rgba(0,0,0,0.48), rgba(0,0,0,0.48)),
-        url("images/jalan.jpg") center/cover no-repeat;
+        url("halaman.jpg") center/cover no-repeat;
 
     display: flex;
     justify-content: center;
