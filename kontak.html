@@ -2,26 +2,20 @@
 <html lang="id">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Kontak Kampung Seburing</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <nav class="navbar">
-
     <div class="logo">
         Kampung <span>Seburing</span>
     </div>
 
     <ul class="nav-menu">
-
         <li><a href="index.html">Beranda</a></li>
         <li><a href="profil.html">Profil</a></li>
         <li><a href="potensi.html">Potensi</a></li>
@@ -29,57 +23,31 @@
         <li><a href="kontak.html">Kontak</a></li>
         <li><a href="akhiran.html">akhiran</a></li>
         <li><a href="admin.html">admin</a></li>
-        
-
     </ul>
-
 </nav>
 
 
 <section class="page-header">
-
     <h1>Kontak & Lokasi</h1>
-
-    <p>
-        Informasi Kampung Seburing
-    </p>
-
+    <p>Informasi Kampung Seburing</p>
 </section>
 
 
 <section class="section">
-
     <div class="container">
-
 
         <div class="contact-grid">
 
-
             <div class="contact-card">
-
                 <h3>📍 Alamat</h3>
-
-                <p>
-                    Kampung Seburing
-                </p>
-
-                <p>
-                    Kecamatan Semparuk
-                </p>
-
-                <p>
-                    Kabupaten Sambas
-                </p>
-
-                <p>
-                    Kalimantan Barat, Indonesia
-                </p>
-
+                <p>Kampung Seburing</p>
+                <p>Kecamatan Semparuk</p>
+                <p>Kabupaten Sambas</p>
+                <p>Kalimantan Barat, Indonesia</p>
             </div>
 
 
             <div class="contact-card">
-
                 <h3>📞 Hubungi Kami</h3>
 
                 <p>
@@ -97,19 +65,15 @@
 
                 <p>
                     📧 Email:
-                    <b>seburingkantordesa@gmail.com/<b>
+                    <b>seburingkantordesa@gmail.com</b>
                 </p>
-
             </div>
-
 
         </div>
 
 
         <div class="content-box map">
-
             <h2>📍 Lokasi Kampung</h2>
-
             <br>
 
             <iframe
@@ -120,56 +84,115 @@
 
         </div>
 
-
     </div>
-
 </section>
-                        <!-- FORM PESAN -->
+
+
+
+<!-- ============================= -->
+<!-- FORM PENGADUAN MASYARAKAT -->
+<!-- ============================= -->
+
 <section class="pesan-section">
-  <div class="papan-pesan">
 
-    <div class="judul-pesan">
-      <span>📩</span>
-      <h2>Kirim Pesan</h2>
-      <p>Hubungi Web Kampung Seburing</p>
+    <div class="papan-pesan">
+
+        <div class="judul-pesan">
+            <span>📩</span>
+            <h2>Pengaduan Masyarakat</h2>
+            <p>Sampaikan pengaduan kepada Kampung Seburing</p>
+        </div>
+
+
+        <form id="contactForm">
+
+            <label for="nama">Nama</label>
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Masukkan nama Anda"
+                required
+            >
+
+
+            <label for="email">Email</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Masukkan email Anda"
+                required
+            >
+
+
+            <label for="pesan">Pengaduan</label>
+
+            <textarea
+                id="pesan"
+                placeholder="Tulis pengaduan Anda di sini..."
+                required
+            ></textarea>
+
+
+            <button type="submit">
+                📨 Kirim Pengaduan
+            </button>
+
+
+            <div id="status"></div>
+
+        </form>
+
     </div>
 
-    <form id="contactForm">
-
-      <label for="nama">Nama</label>
-      <input
-        type="text"
-        id="nama"
-        placeholder="Masukkan nama Anda"
-        required
-      >
-
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        placeholder="Masukkan email Anda"
-        required
-      >
-
-      <label for="pesan">Pesan</label>
-      <textarea
-        id="pesan"
-        placeholder="Tulis pesan Anda di sini..."
-        required
-      ></textarea>
-
-      <button type="submit">
-        📨 Kirim Pesan
-      </button>
-
-      <!-- UCAPAN SETELAH PESAN TERKIRIM -->
-      <div id="status"></div>
-
-    </form>
-
-  </div>
 </section>
+
+
+
+<!-- ============================= -->
+<!-- CEK STATUS PENGADUAN -->
+<!-- ============================= -->
+
+<section class="pesan-section">
+
+    <div class="papan-pesan">
+
+        <div class="judul-pesan">
+            <span>🔎</span>
+            <h2>Cek Pengaduan</h2>
+            <p>Masukkan token untuk melihat status pengaduan</p>
+        </div>
+
+
+        <form id="cekForm">
+
+            <label for="tokenCek">Token Pengaduan</label>
+
+            <input
+                type="text"
+                id="tokenCek"
+                placeholder="Contoh: SBG-K7P4X9"
+                required
+            >
+
+
+            <button type="submit">
+                🔍 Cek Status
+            </button>
+
+        </form>
+
+
+        <!-- HASIL CEK -->
+
+        <div id="hasilCek"></div>
+
+    </div>
+
+</section>
+
+
 
 <script src="script.js"></script>
 
@@ -183,6 +206,111 @@
     </p>
 
 </footer>
-                        
+
+
+<script>
+
+const cekForm = document.getElementById("cekForm");
+const hasilCek = document.getElementById("hasilCek");
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyt2Th3zmCk94dWf5JRiGNrpPTO6gcpL4Sk48QfyHYxVL9MD_LNHPJpw3XehWPdY39WMw/exec";
+
+
+cekForm.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const token =
+        document.getElementById("tokenCek").value.trim();
+
+
+    hasilCek.innerHTML =
+        "⏳ Mencari pengaduan...";
+
+    hasilCek.style.background = "#fff3cd";
+    hasilCek.style.color = "#856404";
+    hasilCek.style.padding = "15px";
+    hasilCek.style.marginTop = "20px";
+    hasilCek.style.borderRadius = "10px";
+
+
+    fetch(
+        API_URL + "?token=" +
+        encodeURIComponent(token)
+    )
+
+    .then(response => response.json())
+
+    .then(result => {
+
+        if (result.status !== "success") {
+
+            hasilCek.innerHTML =
+                "❌ Token tidak ditemukan.<br>" +
+                "Pastikan token yang dimasukkan benar.";
+
+            hasilCek.style.background = "#fdeaea";
+            hasilCek.style.color = "#b42318";
+
+            return;
+        }
+
+
+        const data = result.data;
+
+
+        hasilCek.innerHTML =
+
+            "<h3>📋 Detail Pengaduan</h3>" +
+
+            "<p><b>Token:</b> " +
+            data.token +
+            "</p>" +
+
+            "<p><b>Nama:</b> " +
+            data.nama +
+            "</p>" +
+
+            "<p><b>Pengaduan:</b><br>" +
+            data.pesan +
+            "</p>" +
+
+            "<p><b>Status:</b> " +
+            data.status +
+            "</p>" +
+
+            "<p><b>Tanggapan Admin:</b><br>" +
+            (
+                data.tanggapan
+                ? data.tanggapan
+                : "Belum ada tanggapan dari admin."
+            ) +
+            "</p>";
+
+
+        hasilCek.style.background = "#e8f5ef";
+        hasilCek.style.color = "#096b48";
+
+    })
+
+
+    .catch(error => {
+
+        hasilCek.innerHTML =
+            "❌ Terjadi kesalahan saat mengecek pengaduan.";
+
+        hasilCek.style.background = "#fdeaea";
+        hasilCek.style.color = "#b42318";
+
+        console.log(error);
+
+    });
+
+});
+
+</script>
+
+
 </body>
 </html>
