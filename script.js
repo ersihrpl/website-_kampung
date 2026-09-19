@@ -1,556 +1,486 @@
-const form = document.getElementById("contactForm");
-const status = document.getElementById("status");
+/* ==================================================
+   URL GOOGLE APPS SCRIPT
+================================================== */
 
-// =====================================================
-// GOOGLE APPS SCRIPT
-// =====================================================
-
-// URL untuk KIRIM PENGADUAN
 const API_URL =
-"https://script.google.com/macros/s/AKfycbw2UAZC4UIbNLU81ue50_8DRs6REehpsncplU_VgBqxK2SgyGGu-fETIDggLAS41lwTgw/exec";
+    "https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec";
 
-// URL untuk CEK STATUS
-const API_CEK_URL =
-"https://script.google.com/macros/s/AKfycbybZebuhss9B0nu_786kLgTOQClLAierBsJxbigGT1t-VwO7oEFuFv9FYZlyt7cShDCaQ/exec";
 
-// =====================================================
-// MEMBUAT TOKEN
-// =====================================================
+/* ==================================================
+   FORM PENGADUAN
+================================================== */
 
-function buatToken() {
+const form =
+    document.getElementById("contactForm");
 
-const karakter =
-"ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const statusBox =
+    document.getElementById("status");
 
-let kode = "";
-
-for (let i = 0; i < 6; i++) {
-
-kode += karakter.charAt(
-  Math.floor(
-    Math.random() * karakter.length
-  )
-);
-
-}
-
-return "SBG-" + kode;
-}
-
-// =====================================================
-// FORM KIRIM PENGADUAN
-// =====================================================
 
 if (form) {
 
-form.addEventListener(
-"submit",
-function (e) {
+    form.addEventListener(
+        "submit",
+        async function (e) {
 
-  e.preventDefault();
+            e.preventDefault();
 
 
-  // Ambil data
-  const nama =
-    document
-      .getElementById("nama")
-      .value
-      .trim();
+            const nama =
+                document.getElementById("nama")
+                    .value.trim();
 
-  const email =
-    document
-      .getElementById("email")
-      .value
-      .trim();
+            const email =
+                document.getElementById("email")
+                    .value.trim();
 
-  const pesan =
-    document
-      .getElementById("pesan")
-      .value
-      .trim();
+            const pesan =
+                document.getElementById("pesan")
+                    .value.trim();
 
 
-  // Validasi
-  if (!nama || !email || !pesan) {
+            if (!nama || !email || !pesan) {
 
-    status.innerHTML =
-      "⚠️ Semua kolom harus diisi.";
+                statusBox.style.color = "red";
 
-    status.style.background =
-      "#fff3cd";
+                statusBox.innerText =
+                    "❌ Semua data harus diisi.";
 
-    status.style.color =
-      "#856404";
+                return;
 
-    status.style.padding =
-      "15px";
+            }
 
-    status.style.marginTop =
-      "20px";
 
-    status.style.borderRadius =
-      "10px";
+            statusBox.style.color =
+                "#087f5b";
 
-    return;
+            statusBox.innerText =
+                "⏳ Mengirim pengaduan...";
 
-  }
 
+            try {
 
-  // Buat token
-  const token =
-    buatToken();
+                const data =
+                    new URLSearchParams();
 
+                data.append(
+                    "nama",
+                    nama
+                );
 
-  // Tampilkan loading
-  status.innerHTML =
-    "⏳ Mengirim pengaduan...";
+                data.append(
+                    "email",
+                    email
+                );
 
-  status.style.background =
-    "#fff3cd";
+                data.append(
+                    "pesan",
+                    pesan
+                );
 
-  status.style.color =
-    "#856404";
 
-  status.style.padding =
-    "15px";
+                const response =
+                    await fetch(
+                        API_URL,
+                        {
+                            method: "POST",
+                            body: data
+                        }
+                    );
 
-  status.style.marginTop =
-    "20px";
 
-  status.style.borderRadius =
-    "10px";
+                const result =
+                    await response.json();
 
 
-  // Data yang dikirim
-  const data = {
+                if (result.success) {
 
-    nama: nama,
+                    statusBox.style.color =
+                        "#087f5b";
 
-    email: email,
+                    statusBox.innerHTML =
 
-    pesan: pesan,
+                        "✅ <b>Pengaduan berhasil dikirim!</b>" +
 
-    token: token
+                        "<br><br>" +
 
-  };
+                        "🔑 <b>Token Pengaduan Anda:</b>" +
 
+                        "<br><br>" +
 
-  // Kirim ke Google Apps Script
-  fetch(
-    API_URL,
-    {
+                        "<span style=\"" +
+                        "display:inline-block;" +
+                        "background:white;" +
+                        "padding:15px 25px;" +
+                        "border-radius:10px;" +
+                        "font-size:25px;" +
+                        "font-weight:bold;" +
+                        "letter-spacing:3px;" +
+                        "\">" +
 
-      method: "POST",
+                        escapeHTML(
+                            result.token
+                        ) +
 
-      mode: "no-cors",
+                        "</span>" +
 
-      body: JSON.stringify(data)
+                        "<br><br>" +
 
-    }
-  )
+                        "⚠️ Simpan token ini untuk mengecek status pengaduan.";
 
-  .then(
-    function () {
+                    form.reset();
 
+                } else {
 
-      // Simpan token di browser
-      localStorage.setItem(
-        "tokenPengaduan",
-        token
-      );
+                    statusBox.style.color =
+                        "red";
 
+                    statusBox.innerText =
+                        "❌ " +
+                        (
+                            result.message ||
+                            "Pengaduan gagal dikirim."
+                        );
 
-      // Tampilkan token
-      status.innerHTML =
+                }
 
-        "✅ <b>Pengaduan berhasil dikirim!</b>" +
 
-        "<br><br>" +
+            } catch (error) {
 
-        "🔑 <b>Token Pengaduan Anda:</b>" +
+                console.error(
+                    "ERROR KIRIM:",
+                    error
+                );
 
-        "<br>" +
+                statusBox.style.color =
+                    "red";
 
-        "<span style='" +
+                statusBox.innerText =
+                    "❌ Gagal menghubungi server: " +
+                    error.message;
 
-        "display:inline-block;" +
+            }
 
-        "font-size:24px;" +
-
-        "font-weight:bold;" +
-
-        "margin:10px 0;" +
-
-        "padding:10px 18px;" +
-
-        "background:white;" +
-
-        "border-radius:8px;" +
-
-        "letter-spacing:2px;" +
-
-        "'>" +
-
-        token +
-
-        "</span>" +
-
-        "<br><br>" +
-
-        "⚠️ Simpan token ini untuk " +
-
-        "mengecek status pengaduan.";
-
-
-      status.style.background =
-        "#e8f5ef";
-
-      status.style.color =
-        "#096b48";
-
-
-      // Kosongkan form
-      form.reset();
-
-    }
-  )
-
-  .catch(
-    function (error) {
-
-      console.error(
-        "Error kirim pengaduan:",
-        error
-      );
-
-
-      status.innerHTML =
-
-        "❌ <b>Pengaduan gagal dikirim.</b>" +
-
-        "<br>" +
-
-        "Silakan coba lagi.";
-
-
-      status.style.background =
-        "#fdeaea";
-
-      status.style.color =
-        "#b42318";
-
-    }
-  );
+        }
+    );
 
 }
 
-);
 
-}
-
-// =====================================================
-// FORM CEK STATUS
-// =====================================================
+/* ==================================================
+   CEK STATUS PENGADUAN
+================================================== */
 
 const cekForm =
-document.getElementById(
-"cekForm"
-);
+    document.getElementById("cekForm");
 
 const hasilCek =
-document.getElementById(
-"hasilCek"
-);
+    document.getElementById("hasilCek");
 
-// Pastikan form cek status tersedia
+
 if (cekForm) {
 
-cekForm.addEventListener(
-"submit",
-function (e) {
+    cekForm.addEventListener(
+        "submit",
+        async function (e) {
 
-  // ===============================================
-  // SANGAT PENTING
-  // MENCEGAH HALAMAN KEMBALI / RELOAD
-  // ===============================================
-
-  e.preventDefault();
+            e.preventDefault();
 
 
-  // Ambil token
-  const tokenElement =
-    document.getElementById(
-      "tokenCek"
-    );
-
-  const token =
-    tokenElement.value.trim();
+            const tokenInput =
+                document.getElementById("tokenCek");
 
 
-  // ===============================================
-  // VALIDASI TOKEN
-  // ===============================================
-
-  if (!token) {
-
-    hasilCek.innerHTML =
-      "⚠️ Masukkan token pengaduan terlebih dahulu.";
-
-    hasilCek.style.background =
-      "#fff3cd";
-
-    hasilCek.style.color =
-      "#856404";
-
-    hasilCek.style.padding =
-      "15px";
-
-    hasilCek.style.marginTop =
-      "20px";
-
-    hasilCek.style.borderRadius =
-      "10px";
-
-    return;
-
-  }
+            let token =
+                tokenInput.value.trim();
 
 
-  // ===============================================
-  // TAMPILKAN LOADING
-  // ===============================================
+            if (!token) {
 
-  hasilCek.innerHTML =
-    "⏳ Mencari pengaduan...";
+                hasilCek.style.color =
+                    "red";
 
-  hasilCek.style.background =
-    "#fff3cd";
+                hasilCek.innerText =
+                    "❌ Silakan masukkan token.";
 
-  hasilCek.style.color =
-    "#856404";
+                return;
 
-  hasilCek.style.padding =
-    "15px";
-
-  hasilCek.style.marginTop =
-    "20px";
-
-  hasilCek.style.borderRadius =
-    "10px";
+            }
 
 
-  // ===============================================
-  // CEK TOKEN KE GOOGLE APPS SCRIPT
-  // ===============================================
+            /*
+             * Token dibuat otomatis menjadi huruf besar
+             */
 
-  const url =
-    API_CEK_URL +
-    "?token=" +
-    encodeURIComponent(token);
+            token =
+                token.toUpperCase();
 
 
-  fetch(url)
+            hasilCek.style.color =
+                "#087f5b";
 
-    .then(
-      function (response) {
+            hasilCek.innerText =
+                "⏳ Mengecek pengaduan...";
 
-        if (!response.ok) {
 
-          throw new Error(
-            "HTTP Error " +
-            response.status
-          );
+            try {
+
+                /*
+                 * PENTING:
+                 * Code.gs membaca:
+                 *
+                 * action=cekStatus
+                 * token=TOKEN
+                 */
+
+                const url =
+                    API_URL +
+                    "?action=cekStatus&token=" +
+                    encodeURIComponent(token) +
+                    "&_=" +
+                    Date.now();
+
+
+                console.log(
+                    "CEK STATUS URL:",
+                    url
+                );
+
+
+                const response =
+                    await fetch(url, {
+                        method: "GET",
+                        cache: "no-store"
+                    });
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "HTTP " +
+                        response.status
+                    );
+
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                console.log(
+                    "HASIL CEK:",
+                    result
+                );
+
+
+                if (
+                    result.success &&
+                    result.data
+                ) {
+
+                    const data =
+                        result.data;
+
+
+                    let statusClass =
+                        "status-pending";
+
+
+                    if (
+                        data.status ===
+                        "Diproses"
+                    ) {
+
+                        statusClass =
+                            "status-proses";
+
+                    }
+
+
+                    if (
+                        data.status ===
+                        "Selesai"
+                    ) {
+
+                        statusClass =
+                            "status-selesai";
+
+                    }
+
+
+                    hasilCek.style.color =
+                        "#222";
+
+
+                    hasilCek.innerHTML =
+
+                        "<div style=\"" +
+                        "margin-top:25px;" +
+                        "padding:20px;" +
+                        "background:#e8f7f0;" +
+                        "border-radius:15px;" +
+                        "text-align:left;" +
+                        "\">" +
+
+                        "<h3 style=\"" +
+                        "color:#087f5b;" +
+                        "margin-top:0;" +
+                        "\">" +
+
+                        "✅ Pengaduan Ditemukan" +
+
+                        "</h3>" +
+
+                        "<p>" +
+                        "<b>Token:</b> " +
+                        escapeHTML(
+                            data.token
+                        ) +
+                        "</p>" +
+
+                        "<p>" +
+                        "<b>Nama:</b> " +
+                        escapeHTML(
+                            data.nama
+                        ) +
+                        "</p>" +
+
+                        "<p>" +
+                        "<b>Email:</b> " +
+                        escapeHTML(
+                            data.email
+                        ) +
+                        "</p>" +
+
+                        "<p>" +
+                        "<b>Pengaduan:</b><br>" +
+                        escapeHTML(
+                            data.pesan
+                        ) +
+                        "</p>" +
+
+                        "<p>" +
+                        "<b>Tanggal:</b> " +
+                        escapeHTML(
+                            data.tanggal
+                        ) +
+                        "</p>" +
+
+                        "<p>" +
+                        "<b>Status:</b> " +
+
+                        "<span class=\"" +
+                        statusClass +
+                        "\" style=\"" +
+                        "font-weight:bold;" +
+                        "\">" +
+
+                        escapeHTML(
+                            data.status
+                        ) +
+
+                        "</span>" +
+
+                        "</p>" +
+
+                        "<p>" +
+                        "<b>Tanggapan Admin:</b><br>" +
+
+                        (
+                            data.tanggapan
+                                ? escapeHTML(
+                                    data.tanggapan
+                                )
+                                : "<i>Belum ada tanggapan dari admin.</i>"
+                        ) +
+
+                        "</p>" +
+
+                        "</div>";
+
+                } else {
+
+                    hasilCek.style.color =
+                        "red";
+
+                    hasilCek.innerHTML =
+
+                        "❌ " +
+
+                        escapeHTML(
+                            result.message ||
+                            "Token tidak ditemukan."
+                        );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "ERROR CEK STATUS:",
+                    error
+                );
+
+
+                hasilCek.style.color =
+                    "red";
+
+
+                hasilCek.innerText =
+                    "❌ Gagal menghubungi server: " +
+                    error.message;
+
+            }
 
         }
-
-        return response.json();
-
-      }
-    )
-
-    .then(
-      function (result) {
-
-
-        console.log(
-          "Hasil dari server:",
-          result
-        );
-
-
-        // =========================================
-        // TOKEN TIDAK DITEMUKAN
-        // =========================================
-
-        if (
-          !result ||
-          result.status !== "success"
-        ) {
-
-          hasilCek.innerHTML =
-
-            "❌ <b>Token tidak ditemukan.</b>" +
-
-            "<br><br>" +
-
-            "Pastikan token yang dimasukkan benar.";
-
-
-          hasilCek.style.background =
-            "#fdeaea";
-
-          hasilCek.style.color =
-            "#b42318";
-
-          return;
-
-        }
-
-
-        // =========================================
-        // DATA DITEMUKAN
-        // =========================================
-
-        const data =
-          result.data || {};
-
-
-        // =========================================
-        // TAMPILKAN HASIL
-        // =========================================
-
-        hasilCek.innerHTML =
-
-          "<h3>📋 Detail Pengaduan</h3>" +
-
-          "<p>" +
-
-          "<b>🔑 Token:</b><br>" +
-
-          (data.token || token) +
-
-          "</p>" +
-
-
-          "<p>" +
-
-          "<b>👤 Nama:</b><br>" +
-
-          (data.nama || "-") +
-
-          "</p>" +
-
-
-          "<p>" +
-
-          "<b>📧 Email:</b><br>" +
-
-          (data.email || "-") +
-
-          "</p>" +
-
-
-          "<p>" +
-
-          "<b>📝 Pengaduan:</b><br>" +
-
-          (data.pesan || "-") +
-
-          "</p>" +
-
-
-          "<p>" +
-
-          "<b>📌 Status:</b><br>" +
-
-          (data.status || "Belum diproses") +
-
-          "</p>" +
-
-
-          "<p>" +
-
-          "<b>💬 Tanggapan Admin:</b><br>" +
-
-          (
-
-            data.tanggapan
-
-              ? data.tanggapan
-
-              : "Belum ada tanggapan dari admin."
-
-          ) +
-
-          "</p>";
-
-
-        // =========================================
-        // WARNA HASIL
-        // =========================================
-
-        hasilCek.style.background =
-          "#e8f5ef";
-
-        hasilCek.style.color =
-          "#096b48";
-
-        hasilCek.style.padding =
-          "15px";
-
-        hasilCek.style.marginTop =
-          "20px";
-
-        hasilCek.style.borderRadius =
-          "10px";
-
-
-      }
-    )
-
-    .catch(
-      function (error) {
-
-
-        console.error(
-          "Error cek status:",
-          error
-        );
-
-
-        // =========================================
-        // ERROR
-        // =========================================
-
-        hasilCek.innerHTML =
-
-          "❌ <b>Gagal mengecek pengaduan.</b>" +
-
-          "<br><br>" +
-
-          "Tidak dapat terhubung ke server.";
-
-
-        hasilCek.style.background =
-          "#fdeaea";
-
-        hasilCek.style.color =
-          "#b42318";
-
-        hasilCek.style.padding =
-          "15px";
-
-        hasilCek.style.marginTop =
-          "20px";
-
-        hasilCek.style.borderRadius =
-          "10px";
-
-      }
     );
 
 }
 
-);
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
