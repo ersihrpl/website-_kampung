@@ -47,7 +47,7 @@
 
         #dashboard {
             display: none;
-            max-width: 900px;
+            max-width: 1000px;
             margin: auto;
         }
 
@@ -56,36 +56,83 @@
             padding: 20px;
             margin-top: 20px;
             border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            min-width: 700px;
+        }
+
+        th {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #2563eb;
+            color: white;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .error {
+            color: red;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- LOGIN ADMIN -->
+    <!-- LOGIN -->
     <div class="login-box" id="loginBox">
 
         <h2>🔐 Login Admin</h2>
 
-        <input type="text" id="username" placeholder="username">
+        <input
+            type="text"
+            id="username"
+            placeholder="Username"
+        >
 
-        <input type="password" id="password" placeholder="password">
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
 
-        <button onclick="loginAdmin()">Login</button>
+        <button onclick="loginAdmin()">
+            Login
+        </button>
 
         <p id="pesanLogin"></p>
 
     </div>
 
 
-    <!-- DASHBOARD ADMIN -->
+    <!-- DASHBOARD -->
     <div id="dashboard">
 
         <h1>📊 Dashboard Admin</h1>
 
         <p>Selamat datang di panel admin.</p>
 
-        <button onclick="logout()">Logout</button>
+        <button onclick="tampilkanPengaduan()">
+            🔄 Refresh Data
+        </button>
+
+        <button
+            onclick="logout()"
+            style="margin-top:10px;background:#dc2626;"
+        >
+            Logout
+        </button>
 
         <div class="data-box">
 
@@ -102,42 +149,172 @@
 
 <script>
 
-const DATABASE_URL = "https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec";
+/*
+=========================================
+URL GOOGLE APPS SCRIPT
+=========================================
+*/
+
+const DATABASE_URL =
+"https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec";
 
 
-async function loginAdmin() {
+/*
+=========================================
+LOGIN ADMIN
+=========================================
+*/
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+function loginAdmin() {
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value.trim();
+
+    const pesan =
+        document.getElementById("pesanLogin");
+
 
     if (username === "admin" && password === "12345") {
 
         document.getElementById("loginBox").style.display = "none";
+
         document.getElementById("dashboard").style.display = "block";
 
-        // Ambil data pengaduan
+        pesan.innerText = "";
+
         tampilkanPengaduan();
 
     } else {
 
-        document.getElementById("pesanLogin").innerText =
+        pesan.innerText =
             "Username atau password salah!";
 
+        pesan.style.color = "red";
     }
 }
 
 
+/*
+=========================================
+AMBIL DATA DARI GOOGLE SHEET
+=========================================
+*/
+
 async function tampilkanPengaduan() {
 
-    const tempatData = document.getElementById("dataPengaduan");
+    const tempatData =
+        document.getElementById("dataPengaduan");
 
-    tempatData.innerHTML = "⏳ Mengambil data pengaduan...";
+    tempatData.innerHTML =
+        "⏳ Mengambil data pengaduan...";
+
 
     try {
 
-        const response = await fetch(DATABASE_URL);
+        const response =
+            await fetch(DATABASE_URL + "?action=getData", {
+                method: "GET",
+                cache: "no-cache"
+            });
 
-        const data = await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                "HTTP Error: " + response.status
+            );
+
+        }
+
+
+        const hasil =
+            await response.json();
+
+
+        console.log("HASIL DARI APPS SCRIPT:", hasil);
+
+
+        /*
+        =====================================
+        CEK FORMAT DATA
+        =====================================
+        */
+
+        let data = hasil;
+
+
+        /*
+        Kalau Apps Script mengirim:
+
+        {
+            data: [...]
+        }
+
+        maka ambil hasil.data
+        */
+
+        if (
+            hasil &&
+            !Array.isArray(hasil) &&
+            Array.isArray(hasil.data)
+        ) {
+
+            data = hasil.data;
+
+        }
+
+
+        /*
+        Kalau Apps Script mengirim:
+
+        {
+            pengaduan: [...]
+        }
+
+        */
+
+        if (
+            hasil &&
+            !Array.isArray(hasil) &&
+            Array.isArray(hasil.pengaduan)
+        ) {
+
+            data = hasil.pengaduan;
+
+        }
+
+
+        /*
+        =====================================
+        CEK DATA
+        =====================================
+        */
+
+        if (!Array.isArray(data)) {
+
+            tempatData.innerHTML = `
+                <p class="error">
+                    ❌ Format data dari Google Apps Script
+                    tidak sesuai.
+                </p>
+
+                <p>
+                    Buka Console browser untuk melihat
+                    hasil data.
+                </p>
+            `;
+
+            console.log(
+                "FORMAT DATA TIDAK DIKENALI:",
+                hasil
+            );
+
+            return;
+        }
+
 
         if (data.length === 0) {
 
@@ -148,63 +325,120 @@ async function tampilkanPengaduan() {
         }
 
 
+        /*
+        =====================================
+        BUAT TABEL
+        =====================================
+        */
+
         let tabel = `
-            <table style="
-                width:100%;
-                border-collapse:collapse;
-                margin-top:15px;
-            ">
 
-                <tr style="background:#2563eb;color:white;">
+            <table>
 
-                    <th style="padding:10px;border:1px solid #ddd;">
-                        No
-                    </th>
+                <thead>
 
-                    <th style="padding:10px;border:1px solid #ddd;">
-                        Nama
-                    </th>
+                    <tr>
 
-                    <th style="padding:10px;border:1px solid #ddd;">
-                        Email
-                    </th>
+                        <th>No</th>
 
-                    <th style="padding:10px;border:1px solid #ddd;">
-                        Pengaduan
-                    </th>
+                        <th>Nama</th>
 
-                    <th style="padding:10px;border:1px solid #ddd;">
-                        Tanggal
-                    </th>
+                        <th>Email</th>
 
-                </tr>
+                        <th>Pengaduan</th>
+
+                        <th>Tanggal</th>
+
+                        <th>Status</th>
+
+                        <th>Tanggapan</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
         `;
 
 
         data.forEach((item, index) => {
 
+            /*
+            Mendukung beberapa kemungkinan
+            nama field dari Apps Script.
+            */
+
+            const nama =
+                item.nama ||
+                item.Nama ||
+                item.name ||
+                "-";
+
+
+            const email =
+                item.email ||
+                item.Email ||
+                "-";
+
+
+            const pesan =
+                item.pesan ||
+                item.Pesan ||
+                item.pengaduan ||
+                item.Pengaduan ||
+                item.message ||
+                "-";
+
+
+            const tanggal =
+                item.tanggal ||
+                item.Tanggal ||
+                "-";
+
+
+            const status =
+                item.status ||
+                item.Status ||
+                "-";
+
+
+            const tanggapan =
+                item.tanggapan ||
+                item.Tanggapan ||
+                "-";
+
+
             tabel += `
 
                 <tr>
 
-                    <td style="padding:10px;border:1px solid #ddd;">
+                    <td>
                         ${index + 1}
                     </td>
 
-                    <td style="padding:10px;border:1px solid #ddd;">
-                        ${item.nama || "-"}
+                    <td>
+                        ${escapeHTML(nama)}
                     </td>
 
-                    <td style="padding:10px;border:1px solid #ddd;">
-                        ${item.email || "-"}
+                    <td>
+                        ${escapeHTML(email)}
                     </td>
 
-                    <td style="padding:10px;border:1px solid #ddd;">
-                        ${item.pesan || "-"}
+                    <td>
+                        ${escapeHTML(pesan)}
                     </td>
 
-                    <td style="padding:10px;border:1px solid #ddd;">
-                        ${item.tanggal || "-"}
+                    <td>
+                        ${escapeHTML(tanggal)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(status)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(tanggapan)}
                     </td>
 
                 </tr>
@@ -214,28 +448,94 @@ async function tampilkanPengaduan() {
         });
 
 
-        tabel += "</table>";
+        tabel += `
+
+                </tbody>
+
+            </table>
+
+        `;
+
 
         tempatData.innerHTML = tabel;
 
 
     } catch (error) {
 
-        tempatData.innerHTML =
-            "❌ Gagal mengambil data pengaduan.";
+        console.error(
+            "ERROR MENGAMBIL DATA:",
+            error
+        );
 
-        console.error(error);
+
+        tempatData.innerHTML = `
+
+            <p class="error">
+                ❌ Gagal mengambil data pengaduan.
+            </p>
+
+            <p>
+                ${escapeHTML(error.message)}
+            </p>
+
+        `;
 
     }
 
 }
 
 
+/*
+=========================================
+KEAMANAN TAMPILAN DATA
+=========================================
+*/
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+
+        return "-";
+
+    }
+
+    return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/*
+=========================================
+LOGOUT
+=========================================
+*/
+
 function logout() {
 
-    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("dashboard").style.display =
+        "none";
 
-    document.getElementById("loginBox").style.display = "block";
+    document.getElementById("loginBox").style.display =
+        "block";
+
+    document.getElementById("username").value = "";
+
+    document.getElementById("password").value = "";
+
+    document.getElementById("pesanLogin").innerText = "";
+
+    document.getElementById("dataPengaduan").innerHTML =
+        "Data pengaduan akan tampil di sini.";
 
 }
 
