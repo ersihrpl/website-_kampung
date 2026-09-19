@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
 <title>Admin Pengaduan</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -209,7 +207,7 @@ tr:nth-child(even) {
     resize: vertical;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     font-size: 14px;
 }
 
@@ -272,13 +270,14 @@ tr:nth-child(even) {
         padding: 10px;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- =========================
+     LOGIN
+========================= -->
 
 <div class="login-box" id="loginBox">
 
@@ -310,7 +309,9 @@ tr:nth-child(even) {
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <div id="dashboard">
 
@@ -368,7 +369,7 @@ const DATABASE_URL =
 
 
 /* ==================================================
-   LOGIN
+   LOGIN ADMIN
 ================================================== */
 
 function loginAdmin() {
@@ -409,7 +410,7 @@ function loginAdmin() {
 
 
 /* ==================================================
-   AMBIL DATA GOOGLE SHEET
+   AMBIL DATA GOOGLE SHEETS
 ================================================== */
 
 async function tampilkanPengaduan() {
@@ -426,10 +427,15 @@ async function tampilkanPengaduan() {
             await fetch(
                 DATABASE_URL +
                 "?action=getData&_=" +
-                Date.now()
+                Date.now(),
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
             );
 
         if (!response.ok) {
+
             throw new Error(
                 "HTTP " + response.status
             );
@@ -446,8 +452,11 @@ async function tampilkanPengaduan() {
         let data;
 
         try {
+
             data = JSON.parse(text);
+
         } catch (error) {
+
             throw new Error(
                 "Server tidak mengembalikan JSON."
             );
@@ -643,6 +652,7 @@ async function tampilkanPengaduan() {
 
 /* ==================================================
    KIRIM BALASAN ADMIN
+   MENGGUNAKAN GET
 ================================================== */
 
 async function kirimBalasan(id, index) {
@@ -675,6 +685,8 @@ async function kirimBalasan(id, index) {
         select.value;
 
 
+    /* Cek balasan */
+
     if (!tanggapan) {
 
         hasil.style.color = "red";
@@ -691,61 +703,70 @@ async function kirimBalasan(id, index) {
     hasil.style.color = "#2563eb";
 
     hasil.innerText =
-        "⏳ Menyimpan balasan...";
+        "⏳ Mengirim balasan...";
 
     tombol.disabled = true;
 
     tombol.innerText =
-        "⏳ Menyimpan...";
+        "⏳ Mengirim...";
 
 
     try {
 
         /*
-         * Kirim sebagai FORM URL ENCODED.
-         * Cocok dengan e.parameter di Apps Script.
+         * Buat parameter GET.
          */
 
-        const formData =
+        const params =
             new URLSearchParams();
 
-        formData.append(
+        params.append(
             "action",
             "balas"
         );
 
-        formData.append(
+        params.append(
             "id",
             id
         );
 
-        formData.append(
+        params.append(
             "status",
             status
         );
 
-        formData.append(
+        params.append(
             "tanggapan",
             tanggapan
         );
 
 
+        /*
+         * Buat URL lengkap.
+         */
+
+        const url =
+            DATABASE_URL +
+            "?" +
+            params.toString();
+
+
+        console.log(
+            "URL BALASAN:",
+            url
+        );
+
+
+        /*
+         * Kirim ke Google Apps Script.
+         */
+
         const response =
             await fetch(
-                DATABASE_URL,
+                url,
                 {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/x-www-form-urlencoded;charset=UTF-8"
-                    },
-
-                    body:
-                        formData.toString(),
-
-                    redirect:
-                        "follow"
+                    method: "GET",
+                    cache: "no-store"
                 }
             );
 
@@ -760,9 +781,7 @@ async function kirimBalasan(id, index) {
 
 
         /*
-         * Baca TEXT terlebih dahulu.
-         * Ini mencegah error JSON.parse
-         * langsung dari response.json().
+         * Baca respons sebagai text.
          */
 
         const text =
@@ -782,7 +801,7 @@ async function kirimBalasan(id, index) {
             result =
                 JSON.parse(text);
 
-        } catch (jsonError) {
+        } catch (error) {
 
             console.error(
                 "RESPONS BUKAN JSON:",
@@ -790,8 +809,7 @@ async function kirimBalasan(id, index) {
             );
 
             throw new Error(
-                "Server tidak mengembalikan JSON. Respons: " +
-                text.substring(0, 150)
+                "Google Apps Script tidak mengembalikan JSON."
             );
         }
 
@@ -802,6 +820,10 @@ async function kirimBalasan(id, index) {
         );
 
 
+        /*
+         * Jika berhasil.
+         */
+
         if (
             result.success === true
         ) {
@@ -810,7 +832,7 @@ async function kirimBalasan(id, index) {
                 "green";
 
             hasil.innerText =
-                "✅ Balasan berhasil disimpan!";
+                "✅ Balasan berhasil dikirim!";
 
             textarea.value = "";
 
@@ -821,14 +843,16 @@ async function kirimBalasan(id, index) {
 
 
             /*
-             * Refresh data
+             * Ambil data terbaru.
              */
 
             setTimeout(
                 function() {
+
                     tampilkanPengaduan();
+
                 },
-                800
+                1000
             );
 
 
@@ -841,7 +865,7 @@ async function kirimBalasan(id, index) {
                 "❌ " +
                 (
                     result.message ||
-                    "Gagal menyimpan balasan."
+                    "Balasan gagal dikirim."
                 );
 
             tombol.disabled = false;
@@ -862,7 +886,7 @@ async function kirimBalasan(id, index) {
             "red";
 
         hasil.innerText =
-            "❌ Gagal menghubungi server: " +
+            "❌ Gagal mengirim balasan: " +
             error.message;
 
         tombol.disabled = false;
@@ -883,6 +907,7 @@ function escapeHTML(value) {
         value === null ||
         value === undefined
     ) {
+
         return "-";
     }
 
@@ -925,6 +950,7 @@ function escapeJS(value) {
         value === null ||
         value === undefined
     ) {
+
         return "";
     }
 
