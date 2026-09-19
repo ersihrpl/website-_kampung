@@ -1,172 +1,443 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
 
-    <title>Admin - Pengaduan</title>
+<meta charset="UTF-8">
 
-    <style>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-        }
+<title>Admin Pengaduan</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            margin: 0;
-            padding: 20px;
-        }
+<style>
 
-        .login-box {
-            max-width: 400px;
-            margin: 80px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.1);
-        }
+* {
+    box-sizing: border-box;
+}
 
-        h1 {
-            margin-top: 0;
-        }
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
 
-        h2 {
-            text-align: center;
-        }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+/* =========================
+   LOGIN
+========================= */
 
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #2563eb;
-            color: white;
-            cursor: pointer;
-            font-size: 15px;
-            margin-top: 5px;
-        }
+.login-box {
 
-        button:hover {
-            opacity: 0.9;
-        }
+    width: 100%;
+    max-width: 400px;
 
-        #dashboard {
-            display: none;
-            max-width: 1200px;
-            margin: auto;
-        }
+    margin: 80px auto;
 
-        .data-box {
-            background: white;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow-x: auto;
-        }
+    background: white;
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            min-width: 1100px;
-        }
+    padding: 30px;
 
-        th {
-            padding: 12px;
-            border: 1px solid #ddd;
-            background: #2563eb;
-            color: white;
-            white-space: nowrap;
-        }
+    border-radius: 15px;
 
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            vertical-align: top;
-        }
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.10);
 
-        tr:nth-child(even) {
-            background: #f8fafc;
-        }
+}
 
-        textarea {
-            width: 220px;
-            height: 90px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            resize: vertical;
-            font-family: Arial, sans-serif;
-        }
+.login-box h2 {
 
-        select {
-            width: 220px;
-            padding: 10px;
-            margin-top: 6px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+    text-align: center;
 
-        .btn-balas {
-            background: #16a34a;
-        }
+    margin-top: 0;
 
-        .btn-refresh {
-            background: #2563eb;
-        }
+}
 
-        .btn-logout {
-            background: #dc2626;
-        }
+.login-box input {
 
-        .hasil {
-            margin-top: 8px;
-            font-weight: bold;
-            font-size: 13px;
-        }
+    width: 100%;
 
-        .pengaduan {
-            max-width: 300px;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
+    padding: 13px;
 
-        .tanggapan {
-            max-width: 300px;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
+    margin-top: 12px;
 
-        .info {
-            padding: 10px;
-            background: #eff6ff;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
+    border: 1px solid #ccc;
 
-    </style>
+    border-radius: 8px;
+
+    font-size: 15px;
+
+}
+
+.login-button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+}
+
+.login-button:active {
+
+    transform: scale(0.98);
+
+}
+
+#pesanLogin {
+
+    text-align: center;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+#dashboard {
+
+    display: none;
+
+    width: 100%;
+
+    max-width: 1300px;
+
+    margin: auto;
+
+}
+
+.header {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.08);
+
+}
+
+.header h1 {
+
+    margin: 0 0 8px 0;
+
+}
+
+.header p {
+
+    margin: 0;
+
+    color: #666;
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.button-area {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+.button-area button {
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 12px 18px;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+.refresh-button {
+
+    background: #2563eb;
+
+}
+
+.logout-button {
+
+    background: #dc2626;
+
+}
+
+
+/* =========================
+   DATA BOX
+========================= */
+
+.data-box {
+
+    background: white;
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.08);
+
+    overflow-x: auto;
+
+}
+
+.data-box h2 {
+
+    margin-top: 0;
+
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+
+    width: 100%;
+
+    min-width: 1200px;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+}
+
+th {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+}
+
+td {
+
+    padding: 10px;
+
+    border: 1px solid #ddd;
+
+    vertical-align: top;
+
+}
+
+tr:nth-child(even) {
+
+    background: #f8fafc;
+
+}
+
+
+/* =========================
+   PENGADUAN
+========================= */
+
+.pesan-cell {
+
+    min-width: 250px;
+
+    max-width: 350px;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================
+   TANGGAPAN
+========================= */
+
+.tanggapan-cell {
+
+    min-width: 250px;
+
+    max-width: 350px;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================
+   BALAS
+========================= */
+
+.balas-area {
+
+    min-width: 240px;
+
+}
+
+.balas-area textarea {
+
+    width: 100%;
+
+    height: 90px;
+
+    padding: 10px;
+
+    resize: vertical;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-family: Arial;
+
+    font-size: 14px;
+
+}
+
+.balas-area select {
+
+    width: 100%;
+
+    padding: 10px;
+
+    margin-top: 8px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    background: white;
+
+}
+
+.balas-button {
+
+    width: 100%;
+
+    padding: 11px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #16a34a;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+}
+
+.balas-button:active {
+
+    transform: scale(0.98);
+
+}
+
+.hasil {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+
+        padding: 10px;
+
+    }
+
+    .login-box {
+
+        margin: 50px auto;
+
+        padding: 20px;
+
+    }
+
+    .header {
+
+        padding: 15px;
+
+    }
+
+    .data-box {
+
+        padding: 10px;
+
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
 
-<!-- ======================================
+<!-- ==================================================
      LOGIN ADMIN
-====================================== -->
+================================================== -->
 
 <div
     class="login-box"
@@ -175,12 +446,14 @@
 
     <h2>🔐 Login Admin</h2>
 
+
     <input
         type="text"
         id="username"
         placeholder="Username"
         autocomplete="username"
     >
+
 
     <input
         type="password"
@@ -189,40 +462,63 @@
         autocomplete="current-password"
     >
 
-    <button onclick="loginAdmin()">
+
+    <button
+        class="login-button"
+        onclick="loginAdmin()"
+    >
         Login
     </button>
+
 
     <p id="pesanLogin"></p>
 
 </div>
 
 
-<!-- ======================================
+
+<!-- ==================================================
      DASHBOARD ADMIN
-====================================== -->
+================================================== -->
 
-<div id="dashboard">
+<div
+    id="dashboard"
+>
 
-    <h1>📊 Dashboard Admin</h1>
 
-    <p>
-        Selamat datang di panel admin.
-    </p>
+    <div class="header">
 
-    <button
-        class="btn-refresh"
-        onclick="tampilkanPengaduan()"
-    >
-        🔄 Refresh Data
-    </button>
+        <h1>
+            📊 Dashboard Admin
+        </h1>
 
-    <button
-        class="btn-logout"
-        onclick="logout()"
-    >
-        Logout
-    </button>
+        <p>
+            Kelola pengaduan masyarakat
+            dan berikan tanggapan.
+        </p>
+
+
+        <div class="button-area">
+
+            <button
+                class="refresh-button"
+                onclick="tampilkanPengaduan()"
+            >
+                🔄 Refresh Data
+            </button>
+
+
+            <button
+                class="logout-button"
+                onclick="logout()"
+            >
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </div>
+
 
 
     <div class="data-box">
@@ -231,37 +527,38 @@
             📩 Data Pengaduan Masyarakat
         </h2>
 
-        <div class="info">
-            💡 Tulis jawaban pada kolom
-            <b>Balas</b>, pilih status, lalu
-            tekan <b>Simpan Balasan</b>.
-        </div>
 
         <div id="dataPengaduan">
+
             ⏳ Mengambil data...
+
         </div>
 
     </div>
 
+
 </div>
+
 
 
 <script>
 
 
-/* ======================================
+/* ==================================================
    URL GOOGLE APPS SCRIPT
-====================================== */
+================================================== */
 
 const DATABASE_URL =
 "https://script.google.com/macros/s/AKfycbz5d87vpgUbRlEI9uMlbUnd-1TkJlepogoGn27pF2Wk1X52z5RQ5LsTGzLwifNGL4nOiA/exec";
 
 
-/* ======================================
-   LOGIN ADMIN
-====================================== */
+
+/* ==================================================
+   LOGIN
+================================================== */
 
 function loginAdmin() {
+
 
     const username =
         document
@@ -269,11 +566,13 @@ function loginAdmin() {
             .value
             .trim();
 
+
     const password =
         document
             .getElementById("password")
             .value
             .trim();
+
 
     const pesan =
         document.getElementById(
@@ -285,6 +584,7 @@ function loginAdmin() {
         username === "admin" &&
         password === "12345"
     ) {
+
 
         document.getElementById(
             "loginBox"
@@ -304,21 +604,26 @@ function loginAdmin() {
 
     } else {
 
+
+        pesan.style.color = "red";
+
+
         pesan.innerText =
             "❌ Username atau password salah!";
 
-        pesan.style.color = "red";
 
     }
 
 }
 
 
-/* ======================================
-   TAMPILKAN DATA PENGADUAN
-====================================== */
+
+/* ==================================================
+   AMBIL DATA GOOGLE SHEET
+================================================== */
 
 async function tampilkanPengaduan() {
+
 
     const tempat =
         document.getElementById(
@@ -332,11 +637,14 @@ async function tampilkanPengaduan() {
 
     try {
 
+
         const response =
             await fetch(
+
                 DATABASE_URL +
                 "?action=getData&_=" +
                 Date.now()
+
             );
 
 
@@ -355,29 +663,47 @@ async function tampilkanPengaduan() {
 
 
         console.log(
-            "DATA DARI SERVER:",
+            "DATA DARI GOOGLE SHEET:",
             data
         );
 
 
-        if (!Array.isArray(data)) {
+        if (
+            !Array.isArray(data)
+        ) {
+
 
             tempat.innerHTML =
-                "❌ Format data dari server tidak sesuai.";
+                `
+                <p style="color:red;">
+                    ❌ Data dari server
+                    tidak sesuai.
+                </p>
+                `;
+
 
             return;
 
         }
 
 
-        if (data.length === 0) {
+        if (
+            data.length === 0
+        ) {
+
 
             tempat.innerHTML =
-                "📭 Belum ada pengaduan.";
+                `
+                <p>
+                    📭 Belum ada pengaduan.
+                </p>
+                `;
+
 
             return;
 
         }
+
 
 
         let html = `
@@ -388,21 +714,37 @@ async function tampilkanPengaduan() {
 
                 <tr>
 
-                    <th>No</th>
+                    <th>
+                        No
+                    </th>
 
-                    <th>Nama</th>
+                    <th>
+                        Nama
+                    </th>
 
-                    <th>Email</th>
+                    <th>
+                        Email
+                    </th>
 
-                    <th>Pengaduan</th>
+                    <th>
+                        Pengaduan
+                    </th>
 
-                    <th>Tanggal</th>
+                    <th>
+                        Tanggal
+                    </th>
 
-                    <th>Status</th>
+                    <th>
+                        Status
+                    </th>
 
-                    <th>Tanggapan</th>
+                    <th>
+                        Tanggapan
+                    </th>
 
-                    <th>Balas</th>
+                    <th>
+                        Balas
+                    </th>
 
                 </tr>
 
@@ -411,6 +753,7 @@ async function tampilkanPengaduan() {
             <tbody>
 
         `;
+
 
 
         data.forEach(
@@ -425,6 +768,7 @@ async function tampilkanPengaduan() {
                 html += `
 
                 <tr>
+
 
                     <td>
                         ${index + 1}
@@ -445,7 +789,9 @@ async function tampilkanPengaduan() {
                     </td>
 
 
-                    <td class="pengaduan">
+                    <td
+                        class="pesan-cell"
+                    >
                         ${escapeHTML(
                             item.pesan
                         )}
@@ -466,7 +812,9 @@ async function tampilkanPengaduan() {
                     </td>
 
 
-                    <td class="tanggapan">
+                    <td
+                        class="tanggapan-cell"
+                    >
                         ${escapeHTML(
                             item.tanggapan ||
                             "-"
@@ -474,7 +822,10 @@ async function tampilkanPengaduan() {
                     </td>
 
 
-                    <td>
+                    <td
+                        class="balas-area"
+                    >
+
 
                         <textarea
                             id="balasan_${index}"
@@ -491,8 +842,8 @@ async function tampilkanPengaduan() {
                                 ${
                                     status ===
                                     "Pending"
-                                    ? "selected"
-                                    : ""
+                                        ? "selected"
+                                        : ""
                                 }
                             >
                                 Pending
@@ -504,8 +855,8 @@ async function tampilkanPengaduan() {
                                 ${
                                     status ===
                                     "Diproses"
-                                    ? "selected"
-                                    : ""
+                                        ? "selected"
+                                        : ""
                                 }
                             >
                                 Diproses
@@ -517,8 +868,8 @@ async function tampilkanPengaduan() {
                                 ${
                                     status ===
                                     "Selesai"
-                                    ? "selected"
-                                    : ""
+                                        ? "selected"
+                                        : ""
                                 }
                             >
                                 Selesai
@@ -528,7 +879,7 @@ async function tampilkanPengaduan() {
 
 
                         <button
-                            class="btn-balas"
+                            class="balas-button"
                             onclick="kirimBalasan(
                                 '${escapeJS(item.id)}',
                                 ${index}
@@ -543,7 +894,9 @@ async function tampilkanPengaduan() {
                             id="hasil_${index}"
                         ></div>
 
+
                     </td>
+
 
                 </tr>
 
@@ -551,6 +904,7 @@ async function tampilkanPengaduan() {
 
             }
         );
+
 
 
         html += `
@@ -562,42 +916,47 @@ async function tampilkanPengaduan() {
         `;
 
 
-        tempat.innerHTML = html;
+        tempat.innerHTML =
+            html;
 
 
     } catch (error) {
 
+
         console.error(
-            "ERROR:",
+            "ERROR DATA:",
             error
         );
 
 
-        tempat.innerHTML = `
+        tempat.innerHTML =
+            `
             <p style="color:red;">
-                ❌ Gagal mengambil data pengaduan.
+                ❌ Gagal mengambil data.
             </p>
 
-            <p>
+            <p style="color:#666;">
                 ${escapeHTML(
                     error.message
                 )}
             </p>
-        `;
+            `;
 
     }
 
 }
 
 
-/* ======================================
+
+/* ==================================================
    KIRIM BALASAN ADMIN
-====================================== */
+================================================== */
 
 async function kirimBalasan(
     id,
     index
 ) {
+
 
     const textarea =
         document.getElementById(
@@ -625,45 +984,100 @@ async function kirimBalasan(
         select.value;
 
 
-    if (!tanggapan) {
 
-        hasil.style.color = "red";
+    if (
+        !tanggapan
+    ) {
+
+
+        hasil.style.color =
+            "red";
+
 
         hasil.innerText =
             "⚠️ Tulis balasan terlebih dahulu.";
+
 
         return;
 
     }
 
 
-    hasil.style.color = "#2563eb";
+
+    hasil.style.color =
+        "#2563eb";
+
 
     hasil.innerText =
         "⏳ Menyimpan balasan...";
 
 
+
     try {
 
 
-        const url =
-            DATABASE_URL +
-            "?action=balas" +
-            "&id=" +
-            encodeURIComponent(id) +
-            "&status=" +
-            encodeURIComponent(status) +
-            "&tanggapan=" +
-            encodeURIComponent(tanggapan) +
-            "&_=" +
-            Date.now();
+        /*
+         * Sesuai dengan doPost()
+         * pada Code.gs
+         */
+
+        const formData =
+            new URLSearchParams();
+
+
+        formData.append(
+            "action",
+            "balas"
+        );
+
+
+        formData.append(
+            "id",
+            id
+        );
+
+
+        formData.append(
+            "status",
+            status
+        );
+
+
+        formData.append(
+            "tanggapan",
+            tanggapan
+        );
+
 
 
         const response =
-            await fetch(url);
+            await fetch(
+
+                DATABASE_URL,
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+
+                    },
+
+                    body:
+                        formData.toString()
+
+                }
+
+            );
 
 
-        if (!response.ok) {
+
+        if (
+            !response.ok
+        ) {
 
             throw new Error(
                 "HTTP " +
@@ -671,6 +1085,7 @@ async function kirimBalasan(
             );
 
         }
+
 
 
         const result =
@@ -683,20 +1098,26 @@ async function kirimBalasan(
         );
 
 
+
         if (
             result.success === true
         ) {
 
+
             hasil.style.color =
                 "green";
+
 
             hasil.innerText =
                 "✅ Balasan berhasil disimpan!";
 
 
+            textarea.value = "";
+
+
             /*
-             * Refresh data setelah
-             * 1 detik.
+             * Refresh data
+             * setelah berhasil.
              */
 
             setTimeout(
@@ -711,8 +1132,10 @@ async function kirimBalasan(
 
         } else {
 
+
             hasil.style.color =
                 "red";
+
 
             hasil.innerText =
                 "❌ " +
@@ -726,6 +1149,7 @@ async function kirimBalasan(
 
     } catch (error) {
 
+
         console.error(
             "ERROR BALAS:",
             error
@@ -735,19 +1159,25 @@ async function kirimBalasan(
         hasil.style.color =
             "red";
 
+
         hasil.innerText =
-            "❌ Gagal menghubungi server.";
+            "❌ Gagal menghubungi server: " +
+            error.message;
 
     }
 
 }
 
 
-/* ======================================
-   ESCAPE HTML
-====================================== */
 
-function escapeHTML(value) {
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(
+    value
+) {
+
 
     if (
         value === null ||
@@ -789,11 +1219,15 @@ function escapeHTML(value) {
 }
 
 
-/* ======================================
-   ESCAPE JAVASCRIPT
-====================================== */
 
-function escapeJS(value) {
+/* ==================================================
+   ESCAPE JAVASCRIPT
+================================================== */
+
+function escapeJS(
+    value
+) {
+
 
     if (
         value === null ||
@@ -820,39 +1254,47 @@ function escapeJS(value) {
 }
 
 
-/* ======================================
+
+/* ==================================================
    LOGOUT
-====================================== */
+================================================== */
 
 function logout() {
 
+
     document.getElementById(
         "dashboard"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     document.getElementById(
         "loginBox"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 
     document.getElementById(
         "username"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "password"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "pesanLogin"
-    ).innerText = "";
+    ).innerText =
+        "";
 
 }
 
 </script>
 
 </body>
+
 </html>
