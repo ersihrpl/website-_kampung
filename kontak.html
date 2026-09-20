@@ -4,50 +4,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Kontak Kampung Seburing</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f8f6;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #087f5b;
+            color: white;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,.12);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #b7f7d8;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: .3s;
+            font-size: 14px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,.18);
+        }
+
+
+        /* HEADER */
+
+        .page-header {
+            background: linear-gradient(135deg, #079669, #0bbf7a);
+            color: white;
+            text-align: center;
+            padding: 75px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+
+        /* SECTION */
+
+        .section {
+            padding: 50px 7%;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+
+        /* CONTACT */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 28px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .contact-card h3 {
+            color: #087f5b;
+            margin-bottom: 15px;
+        }
+
+
+        /* MAP */
+
+        .content-box {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+        }
+
+        .content-box h2 {
+            color: #087f5b;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            border-radius: 15px;
+        }
+
+
+        /* FORM SECTION */
+
+        .pesan-section {
+            padding: 35px 7%;
+        }
+
+        .papan-pesan {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.09);
+        }
+
+        .judul-pesan {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .judul-pesan span {
+            font-size: 45px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .judul-pesan h2 {
+            color: #087f5b;
+            margin-bottom: 8px;
+        }
+
+        .judul-pesan p {
+            color: #64748b;
+        }
+
+
+        /* FORM */
+
+        form label {
+            display: block;
+            margin: 18px 0 8px;
+            font-weight: bold;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            transition: .3s;
+            font-family: inherit;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border-color: #087f5b;
+            box-shadow: 0 0 0 3px rgba(8,127,91,.1);
+        }
+
+        form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        form button {
+            width: 100%;
+            border: none;
+            background: #087f5b;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 22px;
+            transition: .3s;
+        }
+
+        form button:hover {
+            background: #056b4c;
+            transform: translateY(-2px);
+        }
+
+
+        /* TOKEN */
+
+        .token-box {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 18px;
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            text-align: center;
+        }
+
+        .token-box h3 {
+            color: #047857;
+            margin-bottom: 10px;
+        }
+
+        .token {
+            margin: 20px auto;
+            padding: 17px;
+            background: white;
+            border-radius: 12px;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #047857;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.06);
+        }
+
+        .peringatan-token {
+            color: #b45309;
+            font-size: 13px;
+        }
+
+
+        /* HASIL CEK */
+
+        .hasil-status {
+            margin-top: 25px;
+            padding: 22px;
+            border-radius: 18px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .hasil-status h3 {
+            color: #087f5b;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .detail-item span {
+            color: #64748b;
+        }
+
+        .detail-item b {
+            text-align: right;
+        }
+
+        .status {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        .pesan-user,
+        .tanggapan-admin {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            background: white;
+        }
+
+        .pesan-user h4,
+        .tanggapan-admin h4 {
+            margin-bottom: 8px;
+            color: #087f5b;
+        }
+
+
+        /* LOADING & ERROR */
+
+        .loading-box,
+        .error-box {
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .loading-box {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .error-box {
+            background: #fef2f2;
+            color: #b91c1c;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 50px;
+            background: #075b43;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .footer-small {
+            margin-top: 5px;
+            opacity: .8;
+            font-size: 14px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-menu {
+                justify-content: center;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .papan-pesan {
+                padding: 22px;
+            }
+
+            .detail-item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .detail-item b {
+                text-align: left;
+            }
+
+        }
+    </style>
 </head>
+
 
 <body>
 
+
+<!-- ============================= -->
+<!-- NAVBAR -->
+<!-- ============================= -->
+
 <nav class="navbar">
+
     <div class="logo">
         Kampung <span>Seburing</span>
     </div>
 
     <ul class="nav-menu">
-        <li><a href="index.html">Beranda</a></li>
-        <li><a href="profil.html">Profil</a></li>
-        <li><a href="potensi.html">Potensi</a></li>
-        <li><a href="galeri.html">Galeri</a></li>
-        <li><a href="kontak.html">Kontak</a></li>
-        <li><a href="akhiran.html">akhiran</a></li>
-        <li><a href="admin.html">admin</a></li>
+
+        <li>
+            <a href="index.html">Beranda</a>
+        </li>
+
+        <li>
+            <a href="profil.html">Profil</a>
+        </li>
+
+        <li>
+            <a href="potensi.html">Potensi</a>
+        </li>
+
+        <li>
+            <a href="galeri.html">Galeri</a>
+        </li>
+
+        <li>
+            <a href="kontak.html">Kontak</a>
+        </li>
+
+        <li>
+            <a href="akhiran.html">Akhiran</a>
+        </li>
+
+        <li>
+            <a href="admin.html">Admin</a>
+        </li>
+
     </ul>
+
 </nav>
 
 
+
+<!-- ============================= -->
+<!-- HEADER -->
+<!-- ============================= -->
+
 <section class="page-header">
+
     <h1>Kontak & Lokasi</h1>
-    <p>Informasi Kampung Seburing</p>
+
+    <p>
+        Informasi Kampung Seburing
+    </p>
+
 </section>
 
 
+
+<!-- ============================= -->
+<!-- INFORMASI KONTAK -->
+<!-- ============================= -->
+
 <section class="section">
+
     <div class="container">
 
         <div class="contact-grid">
 
+
             <div class="contact-card">
+
                 <h3>📍 Alamat</h3>
+
                 <p>Kampung Seburing</p>
+
                 <p>Kecamatan Semparuk</p>
+
                 <p>Kabupaten Sambas</p>
+
                 <p>Kalimantan Barat, Indonesia</p>
+
             </div>
 
 
             <div class="contact-card">
+
                 <h3>📞 Hubungi Kami</h3>
 
                 <p>
@@ -67,13 +502,20 @@
                     📧 Email:
                     <b>seburingkantordesa@gmail.com</b>
                 </p>
+
             </div>
+
 
         </div>
 
 
+
+        <!-- MAP -->
+
         <div class="content-box map">
+
             <h2>📍 Lokasi Kampung</h2>
+
             <br>
 
             <iframe
@@ -85,12 +527,13 @@
         </div>
 
     </div>
+
 </section>
 
 
 
 <!-- ============================= -->
-<!-- FORM PENGADUAN MASYARAKAT -->
+<!-- BUKU TAMU -->
 <!-- ============================= -->
 
 <section class="pesan-section">
@@ -98,15 +541,24 @@
     <div class="papan-pesan">
 
         <div class="judul-pesan">
-            <span>📩</span>
-            <h2>Pengaduan Masyarakat</h2>
-            <p>Sampaikan pengaduan kepada Kampung Seburing</p>
+
+            <span>📖</span>
+
+            <h2>Buku Tamu Kampung Seburing</h2>
+
+            <p>
+                Silakan isi buku tamu dan sampaikan pesan Anda
+            </p>
+
         </div>
 
 
-        <form id="contactForm">
+        <form id="bukuTamuForm">
 
-            <label for="nama">Nama</label>
+
+            <label for="nama">
+                👤 Nama
+            </label>
 
             <input
                 type="text"
@@ -116,33 +568,41 @@
             >
 
 
-            <label for="email">Email</label>
+
+            <label for="alamat">
+                📍 Alamat
+            </label>
 
             <input
-                type="email"
-                id="email"
-                placeholder="Masukkan email Anda"
+                type="text"
+                id="alamat"
+                placeholder="Masukkan alamat Anda"
                 required
             >
 
 
-            <label for="pesan">Pengaduan</label>
+
+            <label for="pesan">
+                💬 Pesan
+            </label>
 
             <textarea
                 id="pesan"
-                placeholder="Tulis pengaduan Anda di sini..."
+                placeholder="Tulis pesan Anda di sini..."
                 required
             ></textarea>
 
 
+
             <button type="submit">
-                📨 Kirim Pengaduan
+                📨 Kirim Pesan
             </button>
 
 
-            <div id="status"></div>
-
         </form>
+
+
+        <div id="hasilKirim"></div>
 
     </div>
 
@@ -151,23 +611,36 @@
 
 
 <!-- ============================= -->
-<!-- CEK STATUS PENGADUAN -->
+<!-- CEK TOKEN -->
 <!-- ============================= -->
 
 <section class="pesan-section">
 
     <div class="papan-pesan">
 
+
         <div class="judul-pesan">
+
             <span>🔎</span>
+
             <h2>Cek Pengaduan</h2>
-            <p>Masukkan token untuk melihat status pengaduan</p>
+
+            <p>
+                Masukkan token untuk melihat status
+                dan tanggapan admin
+            </p>
+
         </div>
+
 
 
         <form id="cekForm">
 
-            <label for="tokenCek">Token Pengaduan</label>
+
+            <label for="tokenCek">
+                🎟️ Token Pengaduan
+            </label>
+
 
             <input
                 type="text"
@@ -181,10 +654,9 @@
                 🔍 Cek Status
             </button>
 
+
         </form>
 
-
-        <!-- HASIL CEK -->
 
         <div id="hasilCek"></div>
 
@@ -194,18 +666,432 @@
 
 
 
-<script src="script.js"></script>
-
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
 
 <footer>
 
-    <p>© 2026 Kampung Seburing</p>
+    <p>
+        ©️ 2026 Kampung Seburing
+    </p>
 
     <p class="footer-small">
         Kecamatan Semparuk, Kabupaten Sambas
     </p>
 
 </footer>
+
+
+
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+
+<script>
+
+const DATABASE_URL =
+"https://script.google.com/macros/s/AKfycbwJJ6MJPyNx5mL-zTAepNMgmd6xjkhQ-Mzmk6MPlAe-AOwAdo9-jeCnCo-aAgNHNF0v-A/exec";
+
+
+
+// ==========================================
+// BUKU TAMU
+// ==========================================
+
+const bukuTamuForm =
+document.getElementById("bukuTamuForm");
+
+
+if (bukuTamuForm) {
+
+    bukuTamuForm.addEventListener(
+        "submit",
+        async function(e) {
+
+            e.preventDefault();
+
+
+            const nama =
+            document.getElementById("nama")
+            .value
+            .trim();
+
+
+            const alamat =
+            document.getElementById("alamat")
+            .value
+            .trim();
+
+
+            const pesan =
+            document.getElementById("pesan")
+            .value
+            .trim();
+
+
+            const hasil =
+            document.getElementById("hasilKirim");
+
+
+            hasil.innerHTML = `
+                <div class="loading-box">
+                    ⏳ Sedang mengirim pesan...
+                </div>
+            `;
+
+
+            try {
+
+                const dataKirim =
+                new URLSearchParams();
+
+
+                dataKirim.append(
+                    "action",
+                    "simpan"
+                );
+
+
+                dataKirim.append(
+                    "nama",
+                    nama
+                );
+
+
+                dataKirim.append(
+                    "alamat",
+                    alamat
+                );
+
+
+                dataKirim.append(
+                    "pesan",
+                    pesan
+                );
+
+
+                const response =
+                await fetch(
+                    DATABASE_URL,
+                    {
+                        method: "POST",
+                        body: dataKirim
+                    }
+                );
+
+
+                const data =
+                await response.json();
+
+
+                if (data.success) {
+
+
+                    hasil.innerHTML = `
+
+                        <div class="token-box">
+
+                            <h3>
+                                ✅ Pesan Berhasil Dikirim!
+                            </h3>
+
+                            <p>
+                                Terima kasih telah menghubungi
+                                Kampung Seburing.
+                            </p>
+
+                            <p>
+                                Simpan token berikut
+                                untuk mengecek status:
+                            </p>
+
+
+                            <div class="token">
+                                ${data.token}
+                            </div>
+
+
+                            <p class="peringatan-token">
+                                ⚠️ Simpan token ini baik-baik.
+                            </p>
+
+                        </div>
+
+                    `;
+
+
+                    bukuTamuForm.reset();
+
+
+                } else {
+
+
+                    hasil.innerHTML = `
+
+                        <div class="error-box">
+                            ❌ ${data.message}
+                        </div>
+
+                    `;
+
+                }
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                hasil.innerHTML = `
+
+                    <div class="error-box">
+
+                        ❌ Gagal mengirim pesan.
+
+                        <br>
+
+                        Pastikan Google Apps Script
+                        sudah di-deploy sebagai Web App.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// CEK TOKEN
+// ==========================================
+
+const cekForm =
+document.getElementById("cekForm");
+
+
+if (cekForm) {
+
+    cekForm.addEventListener(
+        "submit",
+        async function(e) {
+
+            e.preventDefault();
+
+
+            const token =
+            document.getElementById("tokenCek")
+            .value
+            .trim()
+            .toUpperCase();
+
+
+            const hasil =
+            document.getElementById("hasilCek");
+
+
+            hasil.innerHTML = `
+
+                <div class="loading-box">
+                    ⏳ Mencari pengaduan...
+                </div>
+
+            `;
+
+
+            try {
+
+
+                const response =
+                await fetch(
+                    DATABASE_URL +
+                    "?action=cek&token=" +
+                    encodeURIComponent(token)
+                );
+
+
+                const data =
+                await response.json();
+
+
+                if (!data.success) {
+
+                    hasil.innerHTML = `
+
+                        <div class="error-box">
+                            ❌ Token tidak ditemukan.
+                        </div>
+
+                    `;
+
+                    return;
+                }
+
+
+                const item =
+                data.data;
+
+
+                hasil.innerHTML = `
+
+                    <div class="hasil-status">
+
+                        <h3>
+                            📋 Detail Pengaduan
+                        </h3>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                👤 Nama
+                            </span>
+
+                            <b>
+                                ${escapeHTML(item.nama)}
+                            </b>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                📍 Alamat
+                            </span>
+
+                            <b>
+                                ${escapeHTML(item.alamat)}
+                            </b>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                🎟️ Token
+                            </span>
+
+                            <b>
+                                ${escapeHTML(item.token)}
+                            </b>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                📅 Tanggal
+                            </span>
+
+                            <b>
+                                ${escapeHTML(item.tanggal)}
+                            </b>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span>
+                                📌 Status
+                            </span>
+
+                            <strong class="status">
+
+                                ${escapeHTML(item.status)}
+
+                            </strong>
+
+                        </div>
+
+
+                        <div class="pesan-user">
+
+                            <h4>
+                                💬 Pesan Anda
+                            </h4>
+
+                            <p>
+                                ${escapeHTML(item.pesan)}
+                            </p>
+
+                        </div>
+
+
+                        <div class="tanggapan-admin">
+
+                            <h4>
+                                👨‍💼 Tanggapan Admin
+                            </h4>
+
+                            <p>
+
+                                ${
+                                    item.tanggapan
+                                    ? escapeHTML(
+                                        item.tanggapan
+                                    )
+                                    : "Belum ada tanggapan dari admin."
+                                }
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+
+            } catch (error) {
+
+                console.error(error);
+
+
+                hasil.innerHTML = `
+
+                    <div class="error-box">
+
+                        ❌ Gagal mengambil data.
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// KEAMANAN TEKS
+// ==========================================
+
+function escapeHTML(text) {
+
+    return String(text ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+</script>
 
 
 </body>
